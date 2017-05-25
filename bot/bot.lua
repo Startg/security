@@ -70,7 +70,8 @@ function create_config( )
 		"tools",
 		"fun",
 		"info",
-		"music"
+		"music",
+		"nerkh"
 	},
     sudo_users = {328476482},
     admins = {},
