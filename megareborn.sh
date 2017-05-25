@@ -25,18 +25,18 @@ install() {
 
 function print_logo() {
 	echo -e "\033[38;5;600m"
-	echo -e "         R"
+	echo -e "         S"
 	echo -e "         B"
+	echo -e "         T"
 	echo -e "         R"
-	echo -e "         N"
 	echo -e "\n\e[36m"
 }
 
 function logo_play() {
     declare -A txtlogo
     seconds="0.010"
-    txtlogo[1]="REBORN"
-    txtlogo[2]="MEGA"
+    txtlogo[1]="SKY"
+    txtlogo[2]="bot"
     txtlogo[3]=""
     txtlogo[4]=""
     printf "\033[38;5;600m\t"
@@ -63,10 +63,10 @@ if [ ! -f ./tg/tgcli ]; then
 
    print_logo
    echo -e "\033[38;5;208m"
-   echo -e "     >>>>                       MEGA                             "
+   echo -e "     >>>>                       Sky                             "
    echo -e "     >>>>                       BOT                             "
    echo -e "     >>>>                       ANTISPAM                                   "
-   echo -e "     >>>>                       @BOTREBORN_CH :-)                             "
+   echo -e "     >>>>                       @sudo_star :-)                             "
    echo -e "     >>>>                                                            "
    echo -e "\033[0;00m"
    echo -e "\e[36m"
