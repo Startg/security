@@ -75,13 +75,13 @@ function create_config( )
 		"bye",
 		"addkick",
 		"chat",
-		"chatter",
+		"Chatter",
 		"arz",
 		"lock_fosh",
 		"monshi",
 		"serverinfo",
 		"spammer",
-		"warning"
+		"warnin"
 	  },
     sudo_users = {328476482},
     admins = {},
