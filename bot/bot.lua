@@ -72,7 +72,16 @@ function create_config( )
 		"info",
 		"music",
 		"nerkh",
-		"bye"
+		"bye",
+       "addkick",
+       "chat",
+       "chatter",
+       "arz",
+:       "lock_fosh",
+       "monshi",
+       "serverinfo",
+       "spammer",
+       "warning"
 	},
     sudo_users = {328476482},
     admins = {},
