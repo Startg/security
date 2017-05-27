@@ -61,7 +61,7 @@ end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
     if not lang then
-  return '*#ربات بدون هیچ مشکلی فعال شد!🍃*'
+  return '*#😁ربات بدون هیچ مشکلی فعال شد!🍃*'
 else
   return 'گروه با موفقیت به لیست گروه های مدیریتی ربات افزوده شد'
 end
@@ -73,9 +73,9 @@ local lang = redis:get(hash)
     -- superuser and admins only (because sudo are always has privilege)
       if not is_admin(msg) then
      if not lang then
-        return '_#شما مدیر ربات reborn نمیباشید!🍃_'
+        return '_#شما مدیر ربات ⓢⓚע نمیباشید!🍃_'
    else
-        return '#شما مدیر ربات reborn نمیباشید!🍃'
+        return '#شما مدیر ربات ⓢⓚყ نمیباشید!🍃'
     end
    end
     local data = load_data(_config.moderation.data)
@@ -97,9 +97,9 @@ else
       end data[tostring(groups)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
  if not lang then
-  return '*#گروه دیگر توسط reborn ساپورت نمیشود!🍃*'
+  return '*#گروه دیگر توسط ⓢⓚყ  ساپورت نمیشود!🍃*'
  else
-  return '#گروه دیگر توسط reborn ساپورت نمیشود!🍃'
+  return '#گروه دیگر توسط ⓢⓚყ  ساپورت نمیشود!🍃'
 end
 end
 
@@ -3060,8 +3060,8 @@ end
 if matches[1] == "help" and is_mod(msg) then
 if not lang then
 text = [[
-*Beyond Bot Commands:*
-*!setowner* `[username|id|reply]` 
+*ⓢⓚყ  Bot Commands:*
+*```!setowner* `[username|id|reply]` 
 _Set Group Owner(Multi Owner)_
 *!remowner* `[username|id|reply]` 
  _Remove User From Owner List_
@@ -3145,8 +3145,8 @@ _Show Tools Help_
 _Show Fun Help_
 _You Can Use_ *[!/#]* _To Run The Commands_
 _This Help List Only For_ *Moderators/Owners!*
-_Its Means, Only Group_ *Moderators/Owners* _Can Use It!_
-\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "------").."]"
+_Its Means, Only Group_ *Moderators/Owners* _Can Use It!_```
+
 *Good luck ;)*]]
 
 elseif lang then
