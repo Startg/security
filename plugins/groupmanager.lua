@@ -3061,7 +3061,7 @@ if matches[1] == "help" and is_mod(msg) then
 if not lang then
 text = [[
 *ⓢⓚყ  Bot Commands:*
-*```!setowner* `[username|id|reply]` 
+*!setowner* `[username|id|reply]` 
 _Set Group Owner(Multi Owner)_
 *!remowner* `[username|id|reply]` 
  _Remove User From Owner List_
@@ -3145,7 +3145,7 @@ _Show Tools Help_
 _Show Fun Help_
 _You Can Use_ *[!/#]* _To Run The Commands_
 _This Help List Only For_ *Moderators/Owners!*
-_Its Means, Only Group_ *Moderators/Owners* _Can Use It!_```
+_Its Means, Only Group_ *Moderators/Owners* _Can Use It!_
 
 *Good luck ;)*]]
 
