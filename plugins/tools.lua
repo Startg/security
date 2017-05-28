@@ -1301,7 +1301,7 @@ tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, 'md')
 else
 
 text = [[
-_راهنمای ادمین و سودو های ربات بیوند:_
+_راهنمای ادمین و سودو های ربات sky:_
 
 *!visudo* `[username|id|reply]`
 _اضافه کردن سودو_

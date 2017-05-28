@@ -361,7 +361,7 @@ tdcli.sendMessage(msg.chat_id_, 0, 1, helpfun, 1, 'md')
 else
 
 helpfun = [[
-_راهنمای فان ربات بیوند:_
+_راهنمای فان ربات sky:_
 
 *!time*
 _دریافت ساعت به صورت استیکر_
