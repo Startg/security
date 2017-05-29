@@ -1,5 +1,5 @@
 --Begin Tools.lua :)
-local SUDO = 328476482 -- put Your ID here! <===
+local SUDO = 157059515 -- put Your ID here! <===
 function exi_files(cpath)
     local files = {}
     local pth = cpath
@@ -1192,7 +1192,7 @@ if matches[1] == "helptools" and is_mod(msg) then
 if not lang then
 text = [[
 
-_Sudoer And Admins ⓢⓚע Bot Help :_
+_Sudoer And Admins ƃʇ ʎʞs Bot Help :_
 
 *!visudo* `[username|id|reply]`
 _Add Sudo_
@@ -1301,104 +1301,104 @@ tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, 'md')
 else
 
 text = [[
-_راهنمای ادمین و سودو های ربات ⓢⓚע:_
+_راهنمای ادمین و سودو های ربات ƃʇ ʎʞs:_
 
 *!visudo* `[username|id|reply]`
 _اضافه کردن سودو_
-
+~~~~~~~~~~
 *!desudo* `[username|id|reply]`
 _حذف کردن سودو_
-
+~~~~~~~~~~
 *!sudolist* 
 _لیست سودو‌های ربات_
-
+~~~~~~~~~~
 *!adminprom* `[username|id|reply]`
 _اضافه کردن ادمین به ربات_
-
+~~~~~~~~~~
 *!admindem* `[username|id|reply]`
 _حذف فرد از ادمینی ربات_
-
+~~~~~~~~~~
 *!adminlist* 
 _لیست ادمین ها_
-
+~~~~~~~~~~
 *!leave* 
 _خارج شدن ربات از گروه_
-
+~~~~~~~~~~
 *!autoleave* `[disable/enable]`
 _خروج خودکار_
-
+~~~~~~~~~~
 *!creategroup* `[text]`
 _ساخت گروه ریلم_
-
+~~~~~~~~~~
 *!createsuper* `[text]`
 _ساخت سوپر گروه_
-
+~~~~~~~~~~
 *!tosuper* 
 _تبدیل به سوپر گروه_
-
+~~~~~~~~~~
 *!chats*
 _لیست گروه های مدیریتی ربات_
-
+~~~~~~~~~~
 *!join* `[id]`
 _جوین شدن توسط ربات_
-
+~~~~~~~~~~
 *!rem* `[id]`
 _حذف گروه ازطریق پنل مدیریتی_
-
+~~~~~~~~~~
 *!import* `[link]`
 _جوین شدن ربات توسط لینک_
-
+~~~~~~~~~~
 *!setbotname* `[text]`
 _تغییر اسم ربات_
-
+~~~~~~~~~~
 *!setbotusername* `[text]`
 _تغییر یوزرنیم ربات_
-
+~~~~~~~~~~
 *!delbotusername* 
 _پاک کردن یوزرنیم ربات_
-
+~~~~~~~~~~
 *!markread* `[off/on]`
 _تیک دوم_
-
+~~~~~~~~~~
 *!broadcast* `[text]`
 _فرستادن پیام به تمام گروه های مدیریتی ربات_
-
+~~~~~~~~~~
 *!bc* `[text]` `[gpid]`
 _ارسال پیام مورد نظر به گروه خاص_
-
+~~~~~~~~~~
 *!sendfile* `[cd]` `[file]`
 _ارسال فایل موردنظر از پوشه خاص_
-
+~~~~~~~~~~
 *!sendplug* `[plug]`
 _ارسال پلاگ مورد نظر_
-
+~~~~~~~~~~
 *!save* `[plugin name] [reply]`
 _ذخیره کردن پلاگین_
-
+~~~~~~~~~~
 *!savefile* `[address/filename] [reply]`
 _ذخیره کردن فایل در پوشه مورد نظر_
-
+~~~~~~~~~~
 *!clear cache*
 _پاک کردن کش مسیر .telegram-cli/data_
-
+~~~~~~~~~~
 *!check*
 _اعلام تاریخ انقضای گروه_
-
+~~~~~~~~~~
 *!check* `[GroupID]`
 _اعلام تاریخ انقضای گروه مورد نظر_
-
+~~~~~~~~~~
 *!charge* `[GroupID]` `[Number Of Days]`
 _تنظیم تاریخ انقضای گروه مورد نظر_
-
+~~~~~~~~~~
 *!charge* `[Number Of Days]`
 _تنظیم تاریخ انقضای گروه_
-
+~~~~~~~~~~
 *!jointo* `[GroupID]`
 _دعوت شدن شما توسط ربات به گروه مورد نظر_
-
+~~~~~~~~~~
 *!leave* `[GroupID]`
 _خارج شدن ربات از گروه مورد نظر_
-
+~~~~~~~~~~
 *شما میتوانید از [!/#] در اول دستورات برای اجرای آنها بهره بگیرید*
 
 _این راهنما فقط برای سودو ها/ادمین های ربات میباشد!_
