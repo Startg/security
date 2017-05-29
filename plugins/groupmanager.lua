@@ -3154,63 +3154,63 @@ elseif lang then
 text = [[
 لیست_دستورات_سوپرگروه
 
-📌قفل کردن یکی از موارد زیر4
+📌قفل کردن یکی از موارد زیر🎈🔒
 !mute [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
 
 
 !lock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | pin]
 
 
-📌بازکردن قفل یکی موارد زیر
+🔓بازکردن قفل یکی موارد زیر🎈🔓
 !unmute [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
 —----------------
-تنظیمات لیست موت
+تنظیمات لیست میوت
 /mutelist
 —----------------
-دستورات ربات ریبورن :
+دستورات ربات ⓢⓚע :
 
 !setowner [username|id|reply] 
 انتخاب مالک گروه(قابل انتخاب چند مالک)
-
+~~~~~~~~~~~~~
 !remowner [username|id|reply] 
  حذف کردن فرد از فهرست مالکان گروه
-
+~~~~~~~~~~~~~
 !promote [username|id|reply] 
 ارتقا مقام کاربر به مدیر گروه
-
+~~~~~~~~~~~~~
 !demote [username|id|reply] 
 تنزیل مقام مدیر به کاربر
-
+~~~~~~~~~~~~~
 !setflood [1-50]
 تنظیم حداکثر تعداد پیام مکرر
-
+~~~~~~~~~~~~~
 !silent [username|id|reply] 
 بیصدا کردن کاربر در گروه
-
+~~~~~~~~~~~~~
 !unsilent [username|id|reply] 
 در آوردن کاربر از حالت بیصدا در گروه
-
+~~~~~~~~~~~~~
 !kick [username|id|reply] 
 حذف کاربر از گروه
-
+~~~~~~~~~~~~~
 !ban [username|id|reply] 
 مسدود کردن کاربر از گروه
-
+~~~~~~~~~~~~~
 !unban [username|id|reply] 
 در آوردن از حالت مسدودیت کاربر از گروه
-
+~~~~~~~~~~~~~
 !res [username]
 نمایش شناسه کاربر
-
+~~~~~~~~~~~~~
 !id [reply]
 نمایش شناسه کاربر
-
+~~~~~~~~~~~~~
 !whois [id]
 نمایش نام کاربر, نام کاربری و اطلاعات حساب
-
+~~~~~~~~~~~~~
 !lock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | | fosh |pin]
-در صورت قفل بودن فعالیت ها, ربات آنهارا حذف خواهد کرد
-
+در صورت قفل بودن ربات آنهارا حذف خواهد کرد
+~~~~~~~~~~~~~
 !unlock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | fosh | mention |pin]
 
 —------------------
@@ -3269,21 +3269,21 @@ text = [[
 حذف کاربر از لیست افراد مسدود شده
 /banlist
 لیست افراد مسدود شده
-
+~~~~~~~~~~~~~
 /silent [ریپلی و آیدی]
 اضافه کردن کاربر به لیست افراد سکوت شده
 /unsilent [ریپلی و آیدی]
 حذف کردن کاربر به لیست افراد سکوت شده
 /silentlist
 لیست افراد سکوت شده
-
+~~~~~~~~~~~~~
 /promote [ریپلی و آیدی]
 ارتقا دادن کاربر
 /demote [ریپلی و آیدی]
 برکنار کردن کاربر از مدیریت ربات
 /modlist
 لیست ادمین های ربات در گروه
-
+~~~~~~~~~~~~~
 /getpro [1-10]
 دریافت عکس پروفایل شما
 عکس دوم پروفایل شما را نمایش میدهد
@@ -3311,7 +3311,7 @@ text = [[
 دریافت لینک گروه در پ ویتان!
 /kickme
 خارج شدن از گروه بصورت داوطلبانه
-
+~~~~~~~~~~~~~
 !clean [bans | mods | bots | rules | about | silentlist | filterlist | welcome]   
 
 پاکسازی لیست افراد  مسدود/سکوت/مدیر/مالک شده
@@ -3322,7 +3322,7 @@ text = [[
 !helptools
 —----------------
 ⚠️شما میتوانید از ! و # و / در اول دستور ها استفاده کنید
-⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید
+⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید    мαн∂ι ƒυ¢кєя
 
 @Skyteam]]
 end
