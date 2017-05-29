@@ -314,7 +314,7 @@ local hash = "gp_lang:"..msg.to.id
 local lang = redis:get(hash)
 if not lang then
 helpfun = [[
-_Beyond Reborn Fun Help Commands:_
+_ƃʇ ʎʞs Fun Help Commands:_
 
 *!time*
 _Get time in a sticker_
@@ -361,7 +361,7 @@ tdcli.sendMessage(msg.chat_id_, 0, 1, helpfun, 1, 'md')
 else
 
 helpfun = [[
-_راهنمای فان ربات sky:_
+_راهنمای فان ربات ƃʇ ʎʞs:_
 
 *!time*
 _دریافت ساعت به صورت استیکر_
