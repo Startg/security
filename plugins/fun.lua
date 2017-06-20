@@ -211,8 +211,8 @@ function run(msg, matches)
 		return wtext
 	end
 --------------------------------
-	if matches[1]:lower() == 'time' then
-		local url , res = http.request('http://api.gpmod.ir/time/')
+		if (matches[1]:lower() == 'time' and not Clang) or (matches[1]:lower() == 'ساعت' and Clang) then
+		local url , res = http.request('http://irapi.ir/time/')
 		if res ~= 200 then
 			return "No connection"
 		end
@@ -221,31 +221,18 @@ function run(msg, matches)
 		local jdat = json:decode(url)
 		local url = 'http://latex.codecogs.com/png.download?'..'\\dpi{600}%20\\huge%20\\'..fonts[math.random(#fonts)]..'{{\\color{'..colors[math.random(#colors)]..'}'..jdat.ENtime..'}}'
 		local file = download_to_file(url,'time.webp')
-		tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, '', dl_cb, nil)
+		tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, msg_caption, dl_cb, nil)
 
 	end
---------------------------------
-if matches[1] == 'voice' then
- local text = matches[2]
-    textc = text:gsub(' ','.')
-    
-  if msg.to.type == 'pv' then 
-      return nil
-      else
-  local url = "http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&text="..textc
-  local file = download_to_file(url,'BD-Reborn.mp3')
- 				tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, '@sudo_star', dl_cb, nil)
-   end
-end
 
  --------------------------------
-	if matches[1] == "tr" then 
+	if (matches[1]:lower() == 'tr' and not Clang) or (matches[1]:lower() == 'ترجمه' and Clang) then 
 		url = https.request('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160119T111342Z.fd6bf13b3590838f.6ce9d8cca4672f0ed24f649c1b502789c9f4687a&format=plain&lang='..URL.escape(matches[2])..'&text='..URL.escape(matches[3]))
 		data = json:decode(url)
-		return 'زبان : '..data.lang..'\nترجمه : '..data.text[1]..'\n____________________\n @sudo_star :)'
+		return 'زبان : '..data.lang..'\nترجمه : '..data.text[1]..'\n____________________'..msg_caption
 	end
 --------------------------------
-	if matches[1]:lower() == 'short' then
+	if (matches[1]:lower() == 'short' and not Clang) or (matches[1]:lower() == 'لینک کوتاه' and Clang) then
 		if matches[2]:match("[Hh][Tt][Tt][Pp][Ss]://") then
 			shortlink = matches[2]
 		elseif not matches[2]:match("[Hh][Tt][Tt][Pp][Ss]://") then
@@ -255,11 +242,9 @@ end
 		local jdat = json:decode(yon)
 		local bitly = https.request('https://api-ssl.bitly.com/v3/shorten?access_token=f2d0b4eabb524aaaf22fbc51ca620ae0fa16753d&longUrl='..URL.escape(shortlink))
 		local data = json:decode(bitly)
-		local yeo = http.request('http://yeo.ir/api.php?url='..URL.escape(shortlink)..'=')
-		local opizo = http.request('http://api.gpmod.ir/shorten/?url='..URL.escape(shortlink)..'&username=mersad565@gmail.com')
 		local u2s = http.request('http://u2s.ir/?api=1&return_text=1&url='..URL.escape(shortlink))
 		local llink = http.request('http://llink.ir/yourls-api.php?signature=a13360d6d8&action=shorturl&url='..URL.escape(shortlink)..'&format=simple')
-		local text = ' 🌐لینک اصلی :\n'..check_markdown(data.data.long_url)..'\n\nلینکهای کوتاه شده با 6 سایت کوتاه ساز لینک : \n》کوتاه شده با bitly :\n___________________________\n'..check_markdown(data.data.url)..'\n___________________________\n》کوتاه شده با yeo :\n'..check_markdown(yeo)..'\n___________________________\n》کوتاه شده با اوپیزو :\n'..check_markdown(opizo)..'\n___________________________\n》کوتاه شده با u2s :\n'..check_markdown(u2s)..'\n___________________________\n》کوتاه شده با llink : \n'..check_markdown(llink)..'\n___________________________\n》لینک کوتاه شده با yon : \nyon.ir/'..check_markdown(jdat.output)..'\n____________________\n @sudo_star :)'
+		local text = ' 🌐لینک اصلی :\n'..check_markdown(data.data.long_url)..'\n\nلینکهای کوتاه شده با 6 سایت کوتاه ساز لینک : \n》کوتاه شده با bitly :\n___________________________\n'..(check_markdown(data.data.url) or '---')..'\n___________________________\n》کوتاه شده با u2s :\n'..(check_markdown(u2s) or '---')..'\n___________________________\n》کوتاه شده با llink : \n'..(check_markdown(llink) or '---')..'\n___________________________\n》لینک کوتاه شده با yon : \nyon.ir/'..(check_markdown(jdat.output) or '---')..'\n____________________'..msg_caption
 		return tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, 'html')
 	end
 --------------------------------

@@ -1343,10 +1343,10 @@ end
 if not lang then
 
 local settings = data[tostring(target)]["settings"] 
- text = "*Group Settings:*\n_Lock edit :_ *"..settings.lock_edit.."*\n_Lock links :_ *"..settings.lock_link.."*\n_Lock tags :_ *"..settings.lock_tag.."*\n_Lock flood :_ *"..settings.flood.."*\n_Lock spam :_ *"..settings.lock_spam.."*\n_Lock mention :_ *"..settings.lock_mention.."*\n_Lock arabic :_ *"..settings.lock_arabic.."*\n_Lock webpage :_ *"..settings.lock_webpage.."*\n_Lock markdown :_ *"..settings.lock_markdown.."*\n_Group welcome :_ *"..settings.welcome.."*\n_Lock pin message :_ *"..settings.lock_pin.."*\n_Bots protection :_ *"..settings.lock_bots.."*\n_Flood sensitivity :_ *"..NUM_MSG_MAX.."*\n*____________________*\n_Expire Date :_ *"..expire_date.."*\n*Bot powerby*: @sudo_star\n*Group Language* : *EN*"
+ text = "*Group Settings:*\n_Lock edit :_ *"..settings.lock_edit.."*\n_Lock links :_ *"..settings.lock_link.."*\n_Lock tags :_ *"..settings.lock_tag.."*\n_Lock flood :_ *"..settings.flood.."*\n_Lock spam :_ *"..settings.lock_spam.."*\n_Lock mention :_ *"..settings.lock_mention.."*\n_Lock arabic :_ *"..settings.lock_arabic.."*\n_Lock webpage :_ *"..settings.lock_webpage.."*\n_Lock markdown :_ *"..settings.lock_markdown.."*\n_Group welcome :_ *"..settings.welcome.."*\n_Lock pin message :_ *"..settings.lock_pin.."*\n_Bots protection :_ *"..settings.lock_bots.."*\n_Flood sensitivity :_ *"..NUM_MSG_MAX.."*\n*____________________*\n_Expire Date :_ *"..expire_date.."*\n*Bot powerby*:@sudo\\_star\n*Group Language* : *EN*"
 else
 local settings = data[tostring(target)]["settings"] 
- text = "*تنظیمات گروه:*\n_قفل ویرایش پیام :_ *"..settings.lock_edit.."*\n_قفل لینک :_ *"..settings.lock_link.."*\n_قفل تگ :_ *"..settings.lock_tag.."*\n_قفل پیام مکرر :_ *"..settings.flood.."*\n_قفل هرزنامه :_ *"..settings.lock_spam.."*\n_قفل فراخوانی :_ *"..settings.lock_mention.."*\n_قفل عربی :_ *"..settings.lock_arabic.."*\n_قفل صفحات وب :_ *"..settings.lock_webpage.."*\n_قفل فونت :_ *"..settings.lock_markdown.."*\n_پیام خوشآمد گویی :_ *"..settings.welcome.."*\n_قفل سنجاق کردن :_ *"..settings.lock_pin.."*\n_محافظت در برابر ربات ها :_ *"..settings.lock_bots.."*\n_حداکثر پیام مکرر :_ *"..NUM_MSG_MAX.."*\n*____________________*\n_تاریخ انقضا :_ *"..expire_date.."*\n* سازنده*: @sudo_star\n_زبان سوپرگروه_ : *FA*"
+ text = "*تنظیمات گروه:*\n_قفل ویرایش پیام :_ *"..settings.lock_edit.."*\n_قفل لینک :_ *"..settings.lock_link.."*\n_قفل تگ :_ *"..settings.lock_tag.."*\n_قفل پیام مکرر :_ *"..settings.flood.."*\n_قفل هرزنامه :_ *"..settings.lock_spam.."*\n_قفل فراخوانی :_ *"..settings.lock_mention.."*\n_قفل عربی :_ *"..settings.lock_arabic.."*\n_قفل صفحات وب :_ *"..settings.lock_webpage.."*\n_قفل فونت :_ *"..settings.lock_markdown.."*\n_پیام خوشآمد گویی :_ *"..settings.welcome.."*\n_قفل سنجاق کردن :_ *"..settings.lock_pin.."*\n_محافظت در برابر ربات ها :_ *"..settings.lock_bots.."*\n_حداکثر پیام مکرر :_ *"..NUM_MSG_MAX.."*\n*____________________*\n_تاریخ انقضا :_ *"..expire_date.."*\n* سازنده*:@sudo\\_star\n_زبان سوپرگروه_ : *FA*"
 end
 return text
 end
@@ -3143,6 +3143,7 @@ _set Welcome Message_
 _Show Tools Help_
 *!helpfun*
 _Show Fun Help_
+🔰*channel*: @skyteam
 _You Can Use_ *[!/#]* _To Run The Commands_
 _This Help List Only For_ *Moderators/Owners!*
 _Its Means, Only Group_ *Moderators/Owners* _Can Use It!_
@@ -3321,10 +3322,11 @@ text = [[
 ------------
 !helptools
 —----------------
-⚠️شما میتوانید از ! و # و / در اول دستور ها استفاده کنید
+⚠️شما میتوانید از ! و # و / در اول دستور ها 
+استفاده کنید
 ⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید    мαн∂ι ƒυ¢кєя
 
-@Skyteam]]
+💫*channel*: @Skyteam]]
 end
 return text
 end
