@@ -83,7 +83,7 @@ function create_config( )
 		"spammer",
 		"warnin"
 	  },
-    sudo_users = {328476482},
+    sudo_users = {316747031,439389506},
     admins = {},
     disabled_channels = {},
     moderation = {data = './data/moderation.json'},
