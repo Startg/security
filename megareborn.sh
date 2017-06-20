@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $HOME/megareborn
+cd $HOME/security
 
 install() {
 	    cd tg
