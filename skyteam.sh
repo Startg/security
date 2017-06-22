@@ -35,7 +35,7 @@ function print_logo() {
 function logo_play() {
     declare -A txtlogo
     seconds="0.010"
-    txtlogo[1]="SKY"
+    txtlogo[1]="SKy"
     txtlogo[2]="bot"
     txtlogo[3]=""
     txtlogo[4]=""
