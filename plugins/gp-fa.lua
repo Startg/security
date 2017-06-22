@@ -2287,7 +2287,7 @@ end
 if matches[2] == "تگ" then
 return lock_tag(msg, data, target)
 end
-if matches[2] == "فراحانی" then
+if matches[2] == "فراخانی" then
 return lock_mention(msg, data, target)
 end
 if matches[2] == "ادیت" then
