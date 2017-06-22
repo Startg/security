@@ -108,6 +108,3 @@ return {
   }, 
   run = run 
 }
---End By @Tele_Sudo
---Thanks @Solid & @To0fan
---Channel @LuaError
