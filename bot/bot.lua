@@ -81,7 +81,10 @@ function create_config( )
 		"monshi",
 		"serverinfo",
 		"spammer",
-		"warnin"
+		"warnin",
+		"help",
+		"gp-fa",
+		"banhammer_fa"
 	  },
     sudo_users = {316747031,439389506},
     admins = {},
