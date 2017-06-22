@@ -269,7 +269,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, ungban_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-  if cmd == "سیک" then
+  if cmd == "kick" then
    if is_mod1(data.chat_id_, data.sender_user_id_) then
    if not lang then
   return tdcli.sendMessage(data.chat_id_, "", 0, "_You can't kick_ *mods,owners and bot admins*", 0, "md")
@@ -443,7 +443,7 @@ if not is_gbanned(data.id_) then
      return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از محرومیت گروه های ربات خارج شد*", 0, "md")
    end
 end
-  if cmd == "سیک" then
+  if cmd == "kick" then
    if is_mod1(arg.chat_id, data.id_) then
    if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_You can't kick_ *mods,owners and bot admins*", 0, "md")
@@ -486,13 +486,13 @@ local data = load_data(_config.moderation.data)
 chat = msg.to.id
 user = msg.from.id
    if msg.to.type ~= 'pv' then
- if matches[1] == "سیک" and is_mod(msg) then
+ if matches[1] == "kick" and is_mod(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="سیک"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="kick"})
 end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if is_mod1(msg.to.id, userid) then
@@ -843,7 +843,7 @@ return {
 		"^[!/#](unsilent) (.*)$",
 		"^[!/#](silentlist)$",
 		"^[!/#](kick)$",
-		"^[!/#](سیک) (.*)$",
+		"^[!/#](kick) (.*)$",
 		"^[!/#](delall)$",
 		"^[!/#](delall) (.*)$",
 		"^[!/#](clean) (.*)$",
