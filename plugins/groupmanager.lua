@@ -3143,6 +3143,8 @@ _set Welcome Message_
 _Show Tools Help_
 *!helpfun*
 _Show Fun Help_
+*!helpfarsi*
+_see persian help_
 🔰*channel*: @skyteam
 _You Can Use_ *[!/#]* _To Run The Commands_
 _This Help List Only For_ *Moderators/Owners!*
@@ -3322,6 +3324,9 @@ text = [[
 ------------
 !helptools
 —----------------
+
+دستورات مدیریتی
+_👆مشاهده دستورات فارسی_
 ⚠️شما میتوانید از ! و # و / در اول دستور ها 
 استفاده کنید
 ⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید    мαн∂ι ƒυ¢кєя
@@ -3330,6 +3335,7 @@ text = [[
 end
 return text
 end
+
 --------------------- Welcome -----------------------
 	if matches[1] == "welcome" and is_mod(msg) then
 		if matches[2] == "enable" then
@@ -3498,4 +3504,4 @@ patterns ={
 run=run,
 pre_process = pre_process
 }
---end groupmanager.lua #beyond team#
+--end groupmanager.lua #sky team#
