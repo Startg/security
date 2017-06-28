@@ -1,6 +1,6 @@
 
---Begin Fun.lua By @sudo_star
---Special Thx To @sudo_star
+
+--Special Thx To @sudo_star CH;@sky_TeaM
 --------------------------------
 
 local function run_bash(str)
@@ -66,7 +66,7 @@ local function get_weather(location)
 	local weather = json:decode(b)
 	local city = weather.name
 	local country = weather.sys.country
-	local temp = 'دمای شهر '..city..' هم اکنون '..weather.main.temp..' درجه سانتی گراد می باشد\n____________________\n @Skyteam :)'
+	local temp = 'دمای شهر '..city..' هم اکنون '..weather.main.temp..' درجه سانتی گراد می باشد\n____________________'
 	local conditions = 'شرایط فعلی آب و هوا : '
 	if weather.weather[1].main == 'Clear' then
 		conditions = conditions .. 'آفتابی☀'
@@ -88,7 +88,7 @@ local function calc(exp)
 	b,c = http.request(url)
 	text = nil
 	if c == 200 then
-    text = 'Result = '..b..'\n____________________\n @sudo_star :)'
+    text = 'Result = '..b..'\n____________________'..msg_caption
 	elseif c == 400 then
 		text = b
 	else
@@ -123,14 +123,16 @@ function file_exi(name, path, suffix)
 end
 --------------------------------
 function run(msg, matches) 
-	if matches[1]:lower() == "calc" and matches[2] then 
+local Chash = "cmd_lang:"..msg.to.id
+local Clang = redis:get(Chash)
+	if matches[1]:lower() == "calc" or matches[1] == 'ماشین حساب' and is_mod(msg) then
 		if msg.to.type == "pv" then 
 			return 
        end
 		return calc(matches[2])
 	end
 --------------------------------
-	if matches[1]:lower() == 'praytime' or matches[1] == 'azan' then
+	if matches[1]:lower() == "praytime" or matches[1] == 'ساعات شرعی' and is_mod(msg) then
 		if matches[2] then
 			city = matches[2]
 		elseif not matches[2] then
@@ -148,11 +150,11 @@ function run(msg, matches)
 		text = text..'\nغروب آفتاب: '..data.Sunset
 		text = text..'\nاذان مغرب: '..data.Maghrib
 		text = text..'\nعشاء : '..data.Isha
-		text = text..'\n@sudo_star\n'
+		text = text..msg_caption
 		return tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, 'html')
 	end
 --------------------------------
-	if matches[1]:lower() == 'tophoto' and msg.reply_id then
+	if matches[1]:lower() == "tophoto" or matches[1] == 'تبدیل به عکس' and is_mod(msg) and msg.reply_id then
 		function tophoto(arg, data)
 			function tophoto_cb(arg,data)
 				if data.content_.sticker_ then
@@ -167,9 +169,9 @@ function run(msg, matches)
 					local apath = tostring(tcpath)..'/data/sticker'
 					if file_exi(tostring(name), tostring(apath), tostring(pasvand)) then
 						os.rename(file, pfile)
-						tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, pfile, "@sudo_star", dl_cb, nil)
+						tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, pfile, msg_caption, dl_cb, nil)
 					else
-						tdcli.sendMessage(msg.to.id, msg.id_, 1, '_This sticker does not exist. Send sticker again._', 1, 'md')
+						tdcli.sendMessage(msg.to.id, msg.id_, 1, '_This sticker does not exist. Send sticker again._'..msg_caption, 1, 'md')
 					end
 				else
 					tdcli.sendMessage(msg.to.id, msg.id_, 1, '_This is not a sticker._', 1, 'md')
@@ -180,7 +182,7 @@ function run(msg, matches)
 		tdcli_function ({ ID = 'GetMessage', chat_id_ = msg.chat_id_, message_id_ = msg.reply_id }, tophoto, nil)
     end
 --------------------------------
-	if matches[1]:lower() == 'tosticker' and msg.reply_id then
+	if matches[1]:lower() == "tosticker" or matches[1] == 'تبدیل به استیکر' and is_mod(msg) and msg.reply_id then
 		function tosticker(arg, data)
 			function tosticker_cb(arg,data)
 				if data.content_.ID == 'MessagePhoto' then
@@ -189,7 +191,7 @@ function run(msg, matches)
 					local pfile = 'data/photos/'..file..'.webp'
 					if file_exi(file..'_(1).jpg', tcpath..'/data/photo', 'jpg') then
 						os.rename(pathf, pfile)
-						tdcli.sendDocument(msg.chat_id_, 0, 0, 1, nil, pfile, '@sudo_star', dl_cb, nil)
+						tdcli.sendDocument(msg.chat_id_, 0, 0, 1, nil, pfile, msg_caption, dl_cb, nil)
 					else
 						tdcli.sendMessage(msg.to.id, msg.id_, 1, '_This photo does not exist. Send photo again._', 1, 'md')
 					end
@@ -202,7 +204,7 @@ function run(msg, matches)
 		tdcli_function ({ ID = 'GetMessage', chat_id_ = msg.chat_id_, message_id_ = msg.reply_id }, tosticker, nil)
     end
 --------------------------------
-	if matches[1]:lower() == 'weather' then
+	if matches[1]:lower() == "weather" or matches[1] == 'اب و هوا' and is_mod(msg) then
 		city = matches[2]
 		local wtext = get_weather(city)
 		if not wtext then
@@ -211,7 +213,7 @@ function run(msg, matches)
 		return wtext
 	end
 --------------------------------
-		if (matches[1]:lower() == 'time' and not Clang) or (matches[1]:lower() == 'ساعت' and Clang) then
+	if matches[1]:lower() == "time" or matches[1] == 'ساعت' and is_mod(msg) then
 		local url , res = http.request('http://irapi.ir/time/')
 		if res ~= 200 then
 			return "No connection"
@@ -224,9 +226,22 @@ function run(msg, matches)
 		tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, msg_caption, dl_cb, nil)
 
 	end
+--------------------------------
+	if matches[1]:lower() == "voice" or matches[1] == 'تبدیل به صدا' and is_mod(msg) then
+ local text = matches[2]
+    textc = text:gsub(' ','.')
+    
+  if msg.to.type == 'pv' then 
+      return nil
+      else
+  local url = "http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&text="..textc
+  local file = download_to_file(url,'BD-Reborn.mp3')
+ 				tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, msg_caption, dl_cb, nil)
+   end
+end
 
  --------------------------------
-	if (matches[1]:lower() == 'tr' and not Clang) or (matches[1]:lower() == 'ترجمه' and Clang) then 
+	if matches[1]:lower() == "tr" or matches[1] == 'ترجمه' and is_mod(msg) then
 		url = https.request('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160119T111342Z.fd6bf13b3590838f.6ce9d8cca4672f0ed24f649c1b502789c9f4687a&format=plain&lang='..URL.escape(matches[2])..'&text='..URL.escape(matches[3]))
 		data = json:decode(url)
 		return 'زبان : '..data.lang..'\nترجمه : '..data.text[1]..'\n____________________'..msg_caption
@@ -248,7 +263,7 @@ function run(msg, matches)
 		return tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, 'html')
 	end
 --------------------------------
-	if matches[1]:lower() == "sticker" then 
+	if matches[1]:lower() == "sticker" or matches[1] == 'استیکر' and is_mod(msg) then
 		local eq = URL.escape(matches[2])
 		local w = "500"
 		local h = "500"
@@ -267,10 +282,10 @@ function run(msg, matches)
 		local url = "https://assets.imgix.net/examples/clouds.jpg?blur=150&w="..w.."&h="..h.."&fit=crop&txt="..eq.."&txtsize="..txtsize.."&txtclr="..txtclr.."&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium&mono=ff6598cc"
 		local receiver = msg.to.id
 		local  file = download_to_file(url,'text.webp')
-		tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, '', dl_cb, nil)
+		tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, msg_caption, dl_cb, nil)
 	end
 --------------------------------
-	if matches[1]:lower() == "photo" then 
+	if matches[1]:lower() == "photo" or matches[1] == 'عکس' and is_mod(msg) then
 		local eq = URL.escape(matches[2])
 		local w = "500"
 		local h = "500"
@@ -289,131 +304,37 @@ function run(msg, matches)
 		local url = "https://assets.imgix.net/examples/clouds.jpg?blur=150&w="..w.."&h="..h.."&fit=crop&txt="..eq.."&txtsize="..txtsize.."&txtclr="..txtclr.."&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium&mono=ff6598cc"
 		local receiver = msg.to.id
 		local  file = download_to_file(url,'text.jpg')
-		tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, file, "@sudo_star", dl_cb, nil)
+		tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, file, msg_caption, dl_cb, nil)
 	end
-
-
---------------------------------
-if matches[1] == "helpfun" then
-local hash = "gp_lang:"..msg.to.id
-local lang = redis:get(hash)
-if not lang then
-helpfun = [[
-_ƃʇ ʎʞs Fun Help Commands:_
-
-*!time*
-_Get time in a sticker_
-
-*!short* `[link]`
-_Make short url_
-
-*!voice* `[text]`
-_Convert text to voice_
-
-*!tr* `[lang] [word]`
-_Translates FA to EN and EN to FA_
-_Example:_
-*!tr fa hi*
-
-*!sticker* `[word]`
-_Convert text to sticker_
-
-*!photo* `[word]`
-_Convert text to photo_
-
-*!azan* `[city]`
-_Get Azan time for your city_
-
-*!calc* `[number]`
-Calculator
-
-*!praytime* `[city]`
-_Get Patent (Pray Time)_
-
-*!tosticker* `[reply]`
-_Convert photo to sticker_
-
-*!tophoto* `[reply]`
-_Convert text to photo_
-
-*!weather* `[city]`
-_Get weather_
-
-_You can use_ *[!/#]* _at the beginning of commands._
-
-*Good luck ;)*]]
-tdcli.sendMessage(msg.chat_id_, 0, 1, helpfun, 1, 'md')
-else
-
-helpfun = [[
-_راهنمای فان ربات ƃʇ ʎʞs:_
-
-*!time*
-_دریافت ساعت به صورت استیکر_
-
-*!short* `[link]`
-_کوتاه کننده لینک_
-
-*!voice* `[text]`
-_تبدیل متن به صدا_
-
-*!tr* `[lang]` `[word]`
-_ترجمه متن فارسی به انگلیسی وبرعکس_
-_مثال:_
-_!tr en سلام_
-
-*!sticker* `[word]`
-_تبدیل متن به استیکر_
-
-*!photo* `[word]`
-_تبدیل متن به عکس_
-
-*!azan* `[city]`
-_دریافت اذان_
-
-*!calc* `[number]`
-_ماشین حساب_
-
-*!praytime* `[city]`
-_اعلام ساعات شرعی_
-
-*!tosticker* `[reply]`
-_تبدیل عکس به استیکر_
-
-*!tophoto* `[reply]`
-_تبدیل استیکر‌به عکس_
-
-*!weather* `[city]`
-_دریافت اب وهوا_
-
-*شما میتوانید از [!/#] در اول دستورات برای اجرای آنها بهره بگیرید*
-
-موفق باشید ;)]]
-tdcli.sendMessage(msg.chat_id_, 0, 1, helpfun, 1, 'md')
-end
-
-end
-end
 --------------------------------
 return {               
 	patterns = {
-      "^[!/#](helpfun)$",
-    	"^[!/#](weather) (.*)$",
-		"^[!/](calc) (.*)$",
+    	"^[#!/](weather) (.*)$",
+		"^[#!/](calc) (.*)$",
 		"^[#!/](time)$",
 		"^[#!/](tophoto)$",
 		"^[#!/](tosticker)$",
-		"^[!/#](voice) +(.*)$",
-		"^[/!#]([Pp]raytime) (.*)$",
-		"^[/!#](praytime)$",
-		"^[/!#]([Aa]zan) (.*)$",
-		"^[/!#](azan)$",
-		"^[!/]([Tt]r) ([^%s]+) (.*)$",
-		"^[!/]([Ss]hort) (.*)$",
-		"^[!/](photo) (.+)$",
-		"^[!/](sticker) (.+)$"
+		"^[#!/](voice) +(.*)$",
+		"^[#!/]([Pp]raytime) (.*)$",
+		"^[#!/](praytime)$",
+		"^[#!/]([Tt]r) ([^%s]+) (.*)$",
+		"^[#!/]([Ss]hort) (.*)$",
+		"^[#!/](photo) (.+)$",
+		"^[#!/](sticker) (.+)$",
+    	"^(اب و هوا) (.*)$",
+		"^(ماشین حساب) (.*)$",
+		"^(ساعت)$",
+		"^(تبدیل به عکس)$",
+		"^(تبدیل به استیکر)$",
+		"^(تبدیل به صدا) +(.*)$",
+		"^(ساعات شرعی) (.*)$",
+		"^(ساعات شرعی)$",
+		"^(ترجمه) ([^%s]+) (.*)$",
+		"^(لینک کوتاه) (.*)$",
+		"^(عکس) (.+)$",
+		"^(استیکر) (.+)$"
 		}, 
 	run = run,
 	}
 
---#by @sudo_star :)
+--#EDITby @skyTeaM:)

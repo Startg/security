@@ -12,9 +12,9 @@ end
     local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
 if not lang then
-   return '_#ربات بدون هیچ مشکلی فعال شد!🍃_'
+   return '#ربات بدون هیچ مشکلی فعال شد!🍃'..msg_caption
 else
-return '#ربات در لیست مدیریتی موجود می باشد!🍃'
+return 'گروه در لیست مدیریتی ربات موجود میباشد'..msg_option
   end
 end
         -- create data array in moderation.json
@@ -1348,6 +1348,23 @@ else
 local settings = data[tostring(target)]["settings"] 
  text = "*تنظیمات گروه:*\n_قفل ویرایش پیام :_ *"..settings.lock_edit.."*\n_قفل لینک :_ *"..settings.lock_link.."*\n_قفل تگ :_ *"..settings.lock_tag.."*\n_قفل پیام مکرر :_ *"..settings.flood.."*\n_قفل هرزنامه :_ *"..settings.lock_spam.."*\n_قفل فراخوانی :_ *"..settings.lock_mention.."*\n_قفل عربی :_ *"..settings.lock_arabic.."*\n_قفل صفحات وب :_ *"..settings.lock_webpage.."*\n_قفل فونت :_ *"..settings.lock_markdown.."*\n_پیام خوشآمد گویی :_ *"..settings.welcome.."*\n_قفل سنجاق کردن :_ *"..settings.lock_pin.."*\n_محافظت در برابر ربات ها :_ *"..settings.lock_bots.."*\n_حداکثر پیام مکرر :_ *"..NUM_MSG_MAX.."*\n*____________________*\n_تاریخ انقضا :_ *"..expire_date.."*\n* سازنده*:@sudo\\_star\n_زبان سوپرگروه_ : *FA*"
 end
+if not lang then
+text = string.gsub(text, "yes", "[Aƈƭɪvє]")
+text = string.gsub(text, "no", "[Iɲʌƈƭɪvє]")
+text =  string.gsub(text, "0", "⓪")
+text =  string.gsub(text, "1", "➀")
+text =  string.gsub(text, "2", "➁")
+text =  string.gsub(text, "3", "➂")
+text =  string.gsub(text, "4", "➃")
+text =  string.gsub(text, "5", "➄")
+text =  string.gsub(text, "6", "➅")
+text =  string.gsub(text, "7", "➆")
+text =  string.gsub(text, "8", "➇")
+text =  string.gsub(text, "9", "➈")
+ else
+ text = string.gsub(text, "yes", "#فعال ✔")
+ text =  string.gsub(text, "no", "#غیرفعال ✖")
+ end
 return text
 end
 --------Mutes---------
@@ -3141,7 +3158,7 @@ _Send Group Link In Your Private Message_
 _set Welcome Message_
 *!helptools*
 _Show Tools Help_
-*!helpfun*
+*!fun help*
 _Show Fun Help_
 *!helpfarsi*
 _see persian help_
@@ -3320,7 +3337,10 @@ text = [[
 پاکسازی لیست افراد  مسدود/سکوت/مدیر/مالک شده
 —----------------
 🔊دستورات فان و تولز!🍃
-!helpfun
+♻راهنما فان♻
+✳دستور فارسی👆
+✳اینگلیسی👇
+!fun help
 ------------
 !helptools
 —----------------
