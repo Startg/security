@@ -2716,7 +2716,6 @@ local function pre_process(msg)
 		end
 	end
 end
-end
 return {
 patterns ={
 "^(ایدی)$",

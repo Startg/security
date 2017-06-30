@@ -334,7 +334,6 @@ return {
 		"^(عکس) (.+)$",
 		"^(استیکر) (.+)$"
 		}, 
-	run = run,
-	}
-
+run = run
+}
 --#EDITby @skyTeaM:)
