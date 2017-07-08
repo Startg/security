@@ -3153,7 +3153,7 @@ _Show Fun Help_
 _You Can Use_ *[!/#]* _To Run The Commands_
 _This Help List Only For_ *Moderators/Owners!*
 _Its Means, Only Group_ *Moderators/Owners* _Can Use It!_
-*Good luck ;)*]]
+*Good luck ;)*]]..msg_caption
 
 elseif lang then
 
@@ -3329,7 +3329,7 @@ text = [[
 —----------------
 ⚠️شما میتوانید از ! و # و / در اول دستور ها استفاده کنید
 ⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید
-@skyteam]]
+@skyteam]]..msg_caption
 end
 return text
 end
