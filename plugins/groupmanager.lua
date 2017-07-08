@@ -1343,27 +1343,17 @@ end
 if not lang then
 
 local settings = data[tostring(target)]["settings"] 
- text = "*Group Settings:*\n_Lock edit :_ *"..settings.lock_edit.."*\n_Lock links :_ *"..settings.lock_link.."*\n_Lock tags :_ *"..settings.lock_tag.."*\n_Lock flood :_ *"..settings.flood.."*\n_Lock spam :_ *"..settings.lock_spam.."*\n_Lock mention :_ *"..settings.lock_mention.."*\n_Lock arabic :_ *"..settings.lock_arabic.."*\n_Lock webpage :_ *"..settings.lock_webpage.."*\n_Lock markdown :_ *"..settings.lock_markdown.."*\n_Group welcome :_ *"..settings.welcome.."*\n_Lock pin message :_ *"..settings.lock_pin.."*\n_Bots protection :_ *"..settings.lock_bots.."*\n_Flood sensitivity :_ *"..NUM_MSG_MAX.."*\n*____________________*\n_Expire Date :_ *"..expire_date.."*\n*Bot powerby*:@sudo\\_star\n*Group Language* : *EN*"
+ text = "*ɢʀօʊք ֆɛȶȶɨռɢֆ:*\n_●》ʟօƈӄ ɛɖɨȶ :_ *"..settings.lock_edit.."*\n_●》ʟօƈӄ ʟɨռӄֆ :_ *"..settings.lock_link.."*\n_●》ʟօƈӄ ȶǟɢֆ :_ *"..settings.lock_tag.."*\n_●》ʟօƈӄ ʄʟօօɖ :_ *"..settings.flood.."*\n_●》ʟօƈӄ ֆքǟʍ :_ *"..settings.lock_spam.."*\n_●》ʟօƈӄ ʍɛռȶɨօռ :_ *"..settings.lock_mention.."*\n_●》ʟօƈӄ աɛɮքǟɢɛ :_ *"..settings.lock_webpage.."*\n_●》ʟօƈӄ ʍǟʀӄɖօառ :_ *"..settings.lock_markdown.."*\n_●》ɮօȶֆ քʀօȶɛƈȶɨօռ :_ *"..settings.lock_bots.."*\n_●》Flood sensitivity :_ *"..NUM_MSG_MAX.."*\n_Expire Time :_ *"..expire.."*\n*____________________*\n*Bot channel*: @SkYTeaM\n*Group Language* : *EN*"
 else
 local settings = data[tostring(target)]["settings"] 
- text = "*تنظیمات گروه:*\n_قفل ویرایش پیام :_ *"..settings.lock_edit.."*\n_قفل لینک :_ *"..settings.lock_link.."*\n_قفل تگ :_ *"..settings.lock_tag.."*\n_قفل پیام مکرر :_ *"..settings.flood.."*\n_قفل هرزنامه :_ *"..settings.lock_spam.."*\n_قفل فراخوانی :_ *"..settings.lock_mention.."*\n_قفل عربی :_ *"..settings.lock_arabic.."*\n_قفل صفحات وب :_ *"..settings.lock_webpage.."*\n_قفل فونت :_ *"..settings.lock_markdown.."*\n_پیام خوشآمد گویی :_ *"..settings.welcome.."*\n_قفل سنجاق کردن :_ *"..settings.lock_pin.."*\n_محافظت در برابر ربات ها :_ *"..settings.lock_bots.."*\n_حداکثر پیام مکرر :_ *"..NUM_MSG_MAX.."*\n*____________________*\n_تاریخ انقضا :_ *"..expire_date.."*\n* سازنده*:@sudo\\_star\n_زبان سوپرگروه_ : *FA*"
+ text = "*تنظیمات گروه:*\n_⚪️》قفل ویرایش پیام :_ *"..settings.lock_edit.."*\n_⚪️》قفل لینک :_ *"..settings.lock_link.."*\n_⚪️》قفل تگ :_ *"..settings.lock_tag.."*\n_⚪️》قفل پیام مکرر :_ *"..settings.flood.."*\n_⚪️》قفل هرزنامه :_ *"..settings.lock_spam.."*\n_⚪️》قفل فراخوانی :_ *"..settings.lock_mention.."*\n_⚪️》قفل صفحات وب :_ *"..settings.lock_webpage.."*\n_⚪️》قفل فونت :_ *"..settings.lock_markdown.."*\n_⚪️》محافظت در برابر ربات ها :_ *"..settings.lock_bots.."*\n_حداکثر پیام مکرر :_ *"..NUM_MSG_MAX.."*\n_تاریخ انقضا :_ *"..expire.."*\n*____________________*\n*Bot channel*: @SkYTeaM\n_زبان سوپرگروه_ : *FA*"
 end
 if not lang then
-text = string.gsub(text, "yes", "[Aƈƭɪvє]")
-text = string.gsub(text, "no", "[Iɲʌƈƭɪvє]")
-text =  string.gsub(text, "0", "⓪")
-text =  string.gsub(text, "1", "➀")
-text =  string.gsub(text, "2", "➁")
-text =  string.gsub(text, "3", "➂")
-text =  string.gsub(text, "4", "➃")
-text =  string.gsub(text, "5", "➄")
-text =  string.gsub(text, "6", "➅")
-text =  string.gsub(text, "7", "➆")
-text =  string.gsub(text, "8", "➇")
-text =  string.gsub(text, "9", "➈")
+text = string.gsub(text, "yes", "🔐")
+text = string.gsub(text, "no", "🔓")
  else
- text = string.gsub(text, "yes", "#فعال ✔")
- text =  string.gsub(text, "no", "#غیرفعال ✖")
+ text = string.gsub(text, "yes", "#فعال ")
+ text =  string.gsub(text, "no", "#غیرفعال")
  end
 return text
 end
@@ -2393,10 +2383,10 @@ end
 end
 if not lang then
 local mutes = data[tostring(target)]["mutes"] 
- text = " *Group Mute List* : \n_Mute all : _ *"..mutes.mute_all.."*\n_Mute gif :_ *"..mutes.mute_gif.."*\n_Mute text :_ *"..mutes.mute_text.."*\n_Mute inline :_ *"..mutes.mute_inline.."*\n_Mute game :_ *"..mutes.mute_game.."*\n_Mute photo :_ *"..mutes.mute_photo.."*\n_Mute video :_ *"..mutes.mute_video.."*\n_Mute audio :_ *"..mutes.mute_audio.."*\n_Mute voice :_ *"..mutes.mute_voice.."*\n_Mute sticker :_ *"..mutes.mute_sticker.."*\n_Mute contact :_ *"..mutes.mute_contact.."*\n_Mute forward :_ *"..mutes.mute_forward.."*\n_Mute location :_ *"..mutes.mute_location.."*\n_Mute document :_ *"..mutes.mute_document.."*\n_Mute TgService :_ *"..mutes.mute_tgservice.."*\n_Mute Keyboard :_ *"..mutes.mute_keyboard.."*\n*____________________*\n*Bot channel*: @Skyteam\n*Group Language* : *EN*"
+ text = " *Group Mute List* : \n_⚫️》ʍʊȶɛ ǟʟʟ : _ *"..mutes.mute_all.."*\n_⚫️》ʍʊȶɛ ɢɨʄ :_ *"..mutes.mute_gif.."*\n_⚫️》ʍʊȶɛ ȶɛӼȶ :_ *"..mutes.mute_text.."*\n_⚫️》ʍʊȶɛ ɨռʟɨռɛ :_ *"..mutes.mute_inline.."*\n_⚫️》ʍʊȶɛ ɢǟʍɛ :_ *"..mutes.mute_game.."*\n_⚫️》ʍʊȶɛ քɦօȶօ :_ *"..mutes.mute_photo.."*\n_ʍʊȶɛ ʋɨɖɛօ :_ *"..mutes.mute_video.."*\n_⚫️》ʍʊȶɛ ǟʊɖɨօ :_ *"..mutes.mute_audio.."*\n_ʍʊȶɛ ʋօɨƈɛ :_ *"..mutes.mute_voice.."*\n_⚫️》ʍʊȶɛ ֆȶɨƈӄɛʀ :_ *"..mutes.mute_sticker.."*\n_⚫️》ʍʊȶɛ ƈօռȶǟƈȶ :_ *"..mutes.mute_contact.."*\n_⚫️》ʍʊȶɛ ʄօʀաǟʀɖ :_ *"..mutes.mute_forward.."*\n_⚫️》ʍʊȶɛ ʟօƈǟȶɨօռ :_ *"..mutes.mute_location.."*\n_⚫️》ʍʊȶɛ ɖօƈʊʍɛռȶ :_ *"..mutes.mute_document.."*\n_⚫️》ʍʊȶɛ ȶɢֆɛʀʋɨƈɛ :_ *"..mutes.mute_tgservice.."*\n*____________________*\n*Bot channel*: @SkYTeaM\n*Group Language* : *EN*"
 else
 local mutes = data[tostring(target)]["mutes"] 
- text = " *لیست بیصدا ها* : \n_بیصدا همه : _ *"..mutes.mute_all.."*\n_بیصدا تصاویر متحرک :_ *"..mutes.mute_gif.."*\n_بیصدا متن :_ *"..mutes.mute_text.."*\n_بیصدا کیبورد شیشه ای :_ *"..mutes.mute_inline.."*\n_بیصدا بازی های تحت وب :_ *"..mutes.mute_game.."*\n_بیصدا عکس :_ *"..mutes.mute_photo.."*\n_بیصدا فیلم :_ *"..mutes.mute_video.."*\n_بیصدا آهنگ :_ *"..mutes.mute_audio.."*\n_بیصدا صدا :_ *"..mutes.mute_voice.."*\n_بیصدا برچسب :_ *"..mutes.mute_sticker.."*\n_بیصدا مخاطب :_ *"..mutes.mute_contact.."*\n_بیصدا نقل قول :_ *"..mutes.mute_forward.."*\n_بیصدا موقعیت :_ *"..mutes.mute_location.."*\n_بیصدا اسناد :_ *"..mutes.mute_document.."*\n_بیصدا خدمات تلگرام :_ *"..mutes.mute_tgservice.."*\n_بیصدا صفحه کلید :_ *"..mutes.mute_keyboard.."*\n*____________________*\n*Bot channel*:@Skyteam\n_زبان سوپرگروه_ : *FA*"
+ text = " *لیست بیصدا ها* : \n_⚪️》بیصدا همه : _ *"..mutes.mute_all.."*\n_⚪️》بیصدا تصاویر متحرک :_ *"..mutes.mute_gif.."*\n_⚪️》بیصدا متن :_ *"..mutes.mute_text.."*\n_⚪️》بیصدا کیبورد شیشه ای :_ *"..mutes.mute_inline.."*\n_بیصدا بازی های تحت وب :_ *"..mutes.mute_game.."*\n_⚪️》بیصدا عکس :_ *"..mutes.mute_photo.."*\n_⚪️》بیصدا فیلم :_ *"..mutes.mute_video.."*\n_⚪️》بیصدا آهنگ :_ *"..mutes.mute_audio.."*\n_⚪️》بیصدا صدا :_ *"..mutes.mute_voice.."*\n_⚪️》بیصدا برچسب :_ *"..mutes.mute_sticker.."*\n_⚪️》بیصدا مخاطب :_ *"..mutes.mute_contact.."*\n_⚪️》بیصدا نقل قول :_ *"..mutes.mute_forward.."*\n_⚪️》بیصدا موقعیت :_ *"..mutes.mute_location.."*\n_⚪️》بیصدا اسناد :_ *"..mutes.mute_document.."*\n_⚪️》بیصدا خدمات تلگرام :_ *"..mutes.mute_tgservice.."*\n*____________________*\n*Bot channel*: @SkYTeaM\n_زبان سوپرگروه_ : *FA*"
 end
 return text
 end
@@ -3077,7 +3067,7 @@ end
 if matches[1] == "help" and is_mod(msg) then
 if not lang then
 text = [[
-*ⓢⓚყ  Bot Commands:*
+*Beyond Bot Commands:*
 *!setowner* `[username|id|reply]` 
 _Set Group Owner(Multi Owner)_
 *!remowner* `[username|id|reply]` 
@@ -3160,13 +3150,9 @@ _set Welcome Message_
 _Show Tools Help_
 *!fun help*
 _Show Fun Help_
-*!helpfarsi*
-_see persian help_
-🔰*channel*: @skyteam
 _You Can Use_ *[!/#]* _To Run The Commands_
 _This Help List Only For_ *Moderators/Owners!*
 _Its Means, Only Group_ *Moderators/Owners* _Can Use It!_
-
 *Good luck ;)*]]
 
 elseif lang then
@@ -3174,63 +3160,63 @@ elseif lang then
 text = [[
 لیست_دستورات_سوپرگروه
 
-📌قفل کردن یکی از موارد زیر🎈🔒
+📌قفل کردن یکی از موارد زیر4
 !mute [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
 
 
 !lock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | pin]
 
 
-🔓بازکردن قفل یکی موارد زیر🎈🔓
+📌بازکردن قفل یکی موارد زیر
 !unmute [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
 —----------------
-تنظیمات لیست میوت
+تنظیمات لیست موت
 /mutelist
 —----------------
-دستورات ربات ⓢⓚע :
+دستورات ربات ریبورن :
 
 !setowner [username|id|reply] 
 انتخاب مالک گروه(قابل انتخاب چند مالک)
-~~~~~~~~~~~~~
+
 !remowner [username|id|reply] 
  حذف کردن فرد از فهرست مالکان گروه
-~~~~~~~~~~~~~
+
 !promote [username|id|reply] 
 ارتقا مقام کاربر به مدیر گروه
-~~~~~~~~~~~~~
+
 !demote [username|id|reply] 
 تنزیل مقام مدیر به کاربر
-~~~~~~~~~~~~~
+
 !setflood [1-50]
 تنظیم حداکثر تعداد پیام مکرر
-~~~~~~~~~~~~~
+
 !silent [username|id|reply] 
 بیصدا کردن کاربر در گروه
-~~~~~~~~~~~~~
+
 !unsilent [username|id|reply] 
 در آوردن کاربر از حالت بیصدا در گروه
-~~~~~~~~~~~~~
+
 !kick [username|id|reply] 
 حذف کاربر از گروه
-~~~~~~~~~~~~~
+
 !ban [username|id|reply] 
 مسدود کردن کاربر از گروه
-~~~~~~~~~~~~~
+
 !unban [username|id|reply] 
 در آوردن از حالت مسدودیت کاربر از گروه
-~~~~~~~~~~~~~
+
 !res [username]
 نمایش شناسه کاربر
-~~~~~~~~~~~~~
+
 !id [reply]
 نمایش شناسه کاربر
-~~~~~~~~~~~~~
+
 !whois [id]
 نمایش نام کاربر, نام کاربری و اطلاعات حساب
-~~~~~~~~~~~~~
+
 !lock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | | fosh |pin]
-در صورت قفل بودن ربات آنهارا حذف خواهد کرد
-~~~~~~~~~~~~~
+در صورت قفل بودن فعالیت ها, ربات آنهارا حذف خواهد کرد
+
 !unlock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | fosh | mention |pin]
 
 —------------------
@@ -3289,29 +3275,27 @@ text = [[
 حذف کاربر از لیست افراد مسدود شده
 /banlist
 لیست افراد مسدود شده
-~~~~~~~~~~~~~
+
 /silent [ریپلی و آیدی]
 اضافه کردن کاربر به لیست افراد سکوت شده
 /unsilent [ریپلی و آیدی]
 حذف کردن کاربر به لیست افراد سکوت شده
 /silentlist
 لیست افراد سکوت شده
-~~~~~~~~~~~~~
+
 /promote [ریپلی و آیدی]
 ارتقا دادن کاربر
 /demote [ریپلی و آیدی]
 برکنار کردن کاربر از مدیریت ربات
 /modlist
 لیست ادمین های ربات در گروه
-~~~~~~~~~~~~~
+
 /getpro [1-10]
 دریافت عکس پروفایل شما
 عکس دوم پروفایل شما را نمایش میدهد
 /setlink
 تنظیم لینک برای گروه
 /setrules قوانین
-راهنما فان
-مشاهده دستورات فان☝
 تنظیم متن قوانین گروه
 /setmester[آیدی عددی]
 تنظیم دریافت کننده گزارشات
@@ -3333,24 +3317,19 @@ text = [[
 دریافت لینک گروه در پ ویتان!
 /kickme
 خارج شدن از گروه بصورت داوطلبانه
-~~~~~~~~~~~~~
+
 !clean [bans | mods | bots | rules | about | silentlist | filterlist | welcome]   
 
 پاکسازی لیست افراد  مسدود/سکوت/مدیر/مالک شده
 —----------------
 🔊دستورات فان و تولز!🍃
-!fun help
+!fun help | راهنما فان
 ------------
 !helptools
-—---------------				
-				
-دستورات مدیریتی
-_👆مشاهده دستورات فارسی_
-⚠️شما میتوانید از ! و # و / در اول دستور ها 
-استفاده کنید
-⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید    мαн∂ι ƒυ¢кєя
-
-💫*channel*: @Skyteam]]
+—----------------
+⚠️شما میتوانید از ! و # و / در اول دستور ها استفاده کنید
+⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید
+@skyteam]]
 end
 return text
 end
