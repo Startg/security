@@ -1,5 +1,5 @@
--- #Beyond Reborn Robot
--- #@BeyondTeam
+-- #sky bot Robot
+-- #@skyteam
 
 tdcli = dofile('./tg/tdcli.lua')
 serpent = (loadfile "./libs/serpent.lua")()
@@ -72,9 +72,7 @@ function create_config( )
 		"info",
 		"music",
 		"nerkh",
-		"bye",
 		"addkick",
-		"chat",
 		"lock_fosh",
 		"monshi",
 		"serverinfo",
