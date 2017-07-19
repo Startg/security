@@ -81,7 +81,7 @@ function create_config( )
 		"gp-fa",
 		"banhammer_fa"
 	  },
-    sudo_users = {316747031,439389506},
+    sudo_users = {426857966,364347806},
     admins = {},
     disabled_channels = {},
     moderation = {data = './data/moderation.json'},
