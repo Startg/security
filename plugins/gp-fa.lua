@@ -527,9 +527,9 @@ end
 local lock_link = data[tostring(target)]["settings"]["lock_link"] 
 if lock_link == "yes" then
 if not lang then
- return "*Link* _Posting Is Already Locked_"
+ return "*Link* _Posting Is Already Locked_\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]"
 elseif lang then
- return "ارسال لینک در گروه هم اکنون ممنوع است"
+ return "ارسال لینک در گروه هم اکنون ممنوع است\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]"
 end
 else
 data[tostring(target)]["settings"]["lock_link"] = "yes"

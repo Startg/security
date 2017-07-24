@@ -2484,13 +2484,13 @@ return "پیام سنجاق شده پاک شد"
 end
 end
 end
-if matches[1] == "add" then
+if matches[1] == "add" or matches[1] == "اضافه" then
 return modadd(msg)
 end
-if matches[1] == "rem" then
+if matches[1] == "rem" or matches[1] == "حذف" then
 return modrem(msg)
 end
-if matches[1] == "setowner" and is_admin(msg) then
+if matches[1] == "setowner" or matches[1] == "انتخاب مالک" and is_admin(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -2511,7 +2511,7 @@ tdcli_function ({
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="setowner"})
       end
    end
-if matches[1] == "remowner" and is_admin(msg) then
+if matches[1] == "remowner" or matches[1] == "حذف مالک" and is_admin(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -2532,7 +2532,7 @@ tdcli_function ({
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="remowner"})
       end
    end
-if matches[1] == "promote" and is_owner(msg) then
+if matches[1] == "promote" or matches[1] == "ادمین" and is_owner(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -2553,7 +2553,7 @@ tdcli_function ({
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="promote"})
       end
    end
-if matches[1] == "demote" and is_owner(msg) then
+if matches[1] == "demote" or matches[1] == "حذف ادمین" and is_owner(msg) then
 if not matches[2] and msg.reply_id then
  tdcli_function ({
       ID = "GetMessage",
@@ -2575,39 +2575,30 @@ tdcli_function ({
       end
    end
 
-if matches[1] == "lock" or
-matches[1] == "قفل" and is_mod(msg) then
+if matches[1] == "lock" or matches[1] == "قفل" and is_mod(msg) then
 local target = msg.to.id
-if matches[2] == "link" or
-matches[2] == "لینک" then
+if matches[2] == "link" or matches[2] == "لینک" then
 return lock_link(msg, data, target)
 end
-if matches[2] == "tag" or
-matches[2] == "تگ" then
+if matches[2] == "tag" or matches[2] == "تگ" then
 return lock_tag(msg, data, target)
 end
-if matches[2] == "mention" or
-matches[2] == "فراخوانی" then
+if matches[2] == "mention" then
 return lock_mention(msg, data, target)
 end
-if matches[2] == "arabic" or
-matches[2] == "عربی" then
+if matches[2] == "arabic" then
 return lock_arabic(msg, data, target)
 end
-if matches[2] == "edit" or
-matches[2] == "ویرایش" then
+if matches[2] == "edit" then
 return lock_edit(msg, data, target)
 end
-if matches[2] == "spam" or
-matches[2] == "اسپم" then
+if matches[2] == "spam" then
 return lock_spam(msg, data, target)
 end
-if matches[2] == "flood" or
-matches[2] == "فلود" then
+if matches[2] == "flood" then
 return lock_flood(msg, data, target)
 end
-if matches[2] == "bots" or
-matches[2] == "ربات" then
+if matches[2] == "bots" then
 return lock_bots(msg, data, target)
 end
 if matches[2] == "markdown" then
@@ -2760,8 +2751,7 @@ if matches[2] == "keyboard" then
 return unmute_keyboard(msg ,data, target)
 end
 end
-if matches[1] == "gpinfo" or
-matches[1] == "درباره گروه" and is_mod(msg) and msg.to.type == "channel" then
+if matches[1] == "gpinfo" and is_mod(msg) and msg.to.type == "channel" then
 local function group_info(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -2776,8 +2766,7 @@ end
 end
  tdcli.getChannelFull(msg.to.id, group_info, {chat_id=msg.to.id,msg_id=msg.id})
 end
-if matches[1] == 'newlink' or
-matches[1] == 'لینک جدید' and is_mod(msg) then
+if matches[1] == 'newlink' and is_mod(msg) then
 			local function callback_link (arg, data)
    local hash = "gp_lang:"..msg.to.id
    local lang = redis:get(hash)
@@ -2802,8 +2791,7 @@ matches[1] == 'لینک جدید' and is_mod(msg) then
 			end
  tdcli.exportChatInviteLink(msg.to.id, callback_link, nil)
 		end
-		if matches[1] == 'setlink' or
-matches[1] == 'تنظیم لینک' and is_owner(msg) then
+		if matches[1] == 'setlink' and is_owner(msg) then
 			data[tostring(chat)]['settings']['linkgp'] = 'waiting'
 			save_data(_config.moderation.data, data)
       if not lang then
@@ -2825,8 +2813,7 @@ matches[1] == 'تنظیم لینک' and is_owner(msg) then
 		 	end
        end
 		end
-    if matches[1] == 'link' or
-matches[1] == 'لینک' and is_mod(msg) then
+    if matches[1] == 'link' and is_mod(msg) then
       local linkgp = data[tostring(chat)]['settings']['linkgp']
       if not linkgp then
       if not lang then
@@ -2842,8 +2829,7 @@ matches[1] == 'لینک' and is_mod(msg) then
          end
         return tdcli.sendMessage(chat, msg.id, 1, text, 1, 'html')
      end
-    if matches[1] == 'linkpv' or
-matches[1] == 'لینک پیوی' and is_mod(msg) then
+    if matches[1] == 'linkpv' and is_mod(msg) then
       local linkgp = data[tostring(chat)]['settings']['linkgp']
       if not linkgp then
       if not lang then
@@ -2863,8 +2849,7 @@ matches[1] == 'لینک پیوی' and is_mod(msg) then
         return "_لینک گروه به چت خصوصی شما ارسال شد_"
         end
      end
-  if matches[1] == "setrules" or
-matches[1] == "تنظیم قوانین" and matches[2] and is_mod(msg) then
+  if matches[1] == "setrules" and matches[2] and is_mod(msg) then
     data[tostring(chat)]['rules'] = matches[2]
 	  save_data(_config.moderation.data, data)
      if not lang then
@@ -2873,13 +2858,12 @@ matches[1] == "تنظیم قوانین" and matches[2] and is_mod(msg) then
   return "قوانین گروه ثبت شد"
    end
   end
-  if matches[1] == "rules" or
-matches[1] == "قوانین" then
+  if matches[1] == "rules" then
  if not data[tostring(chat)]['rules'] then
    if not lang then
-     rules = "ℹ️ The Default Rules :\n1⃣ No Flood.\n2⃣ No Spam.\n3⃣ No Advertising.\n4⃣ Try to stay on topic.\n5⃣ Forbidden any racist, sexual, homophobic or gore content.\n➡️ Repeated failure to comply with these rules will cause ban.\n@sudo_star"
+     rules = "ℹ️ The Default Rules :\n1⃣ No Flood.\n2⃣ No Spam.\n3⃣ No Advertising.\n4⃣ Try to stay on topic.\n5⃣ Forbidden any racist, sexual, homophobic or gore content.\n➡️ Repeated failure to comply with these rules will cause ban.\n@skyteam"
     elseif lang then
-       rules = "ℹ️ قوانین پپیشفرض:\n1⃣ ارسال پیام مکرر ممنوع.\n2⃣ اسپم ممنوع.\n3⃣ تبلیغ ممنوع.\n4⃣ سعی کنید از موضوع خارج نشید.\n5⃣ هرنوع نژاد پرستی, شاخ بازی و پورنوگرافی ممنوع .\n➡️ از قوانین پیروی کنید, در صورت عدم رعایت قوانین اول اخطار و در صورت تکرار مسدود.\n@sudo_star"
+       rules = "ℹ️ قوانین پپیشفرض:\n1⃣ ارسال پیام مکرر ممنوع.\n2⃣ اسپم ممنوع.\n3⃣ تبلیغ ممنوع.\n4⃣ سعی کنید از موضوع خارج نشید.\n5⃣ هرنوع نژاد پرستی, شاخ بازی و پورنوگرافی ممنوع .\n➡️ از قوانین پیروی کنید, در صورت عدم رعایت قوانین اول اخطار و در صورت تکرار مسدود.\n@skyteam"
  end
         else
      rules = "*Group Rules :*\n"..data[tostring(chat)]['rules']
@@ -3068,19 +3052,19 @@ if matches[1] == "ownerlist" and is_owner(msg) then
 return ownerlist(msg)
 end
 
-if matches[1] == "setlang" and is_owner(msg) then
-   if matches[2] == "en" then
+if matches[1] == "setlang" or matches[1] == "تنظیم زبان" and is_owner(msg) then
+   if matches[2] == "en" or matches[2] == "انگلیسی" then
 local hash = "gp_lang:"..msg.to.id
 local lang = redis:get(hash)
  redis:del(hash)
 return "_Group Language Set To:_ EN"
-  elseif matches[2] == "fa" then
+  elseif matches[2] == "fa" or matches[2] == "فارسی" then
 redis:set(hash, true)
 return "*زبان گروه تنظیم شد به : فارسی*"
 end
 end
 
-if matches[1] == "help" and is_mod(msg) then
+if matches[1] == "help" or matches[1] == "راهنما" and is_mod(msg) then
 if not lang then
 text = [[
 *sky Bot Commands:*
@@ -3176,20 +3160,16 @@ elseif lang then
 text = [[
 لیست_دستورات_سوپرگروه
 
-📌قفل کردن یکی از موارد زیر4
+🔇بیصدا کردن یکی از موارد زیر
 !mute [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
-
-
-!lock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | pin]
-
-
-📌بازکردن قفل یکی موارد زیر
+—----------------
+🔊باصدا کردن یکی موارد زیر
 !unmute [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
 —----------------
 تنظیمات لیست موت
 /mutelist
 —----------------
-دستورات ربات ریبورن :
+دستورات ربات اسکای :
 
 !setowner [username|id|reply] 
 انتخاب مالک گروه(قابل انتخاب چند مالک)
@@ -3278,7 +3258,7 @@ text = [[
 مثال:
 با دستور زیر گروه برای 1 ساعت و 20 دقیقه و 4 ثانیه قفل میشود
 
-/mt 1
+/mt 1 20 4
 
 —------------------
 تعیین وضعیت خروج داوطلبانه
@@ -3351,8 +3331,8 @@ return text
 end
 
 --------------------- Welcome -----------------------
-	if matches[1] == "welcome" and is_mod(msg) then
-		if matches[2] == "enable" then
+	if matches[1] == "welcome" or matches[1] == "ولکام" and is_mod(msg) then
+		if matches[2] == "enable" or              matches[2] == "فعال" then
 			welcome = data[tostring(chat)]['settings']['welcome']
 			if welcome == "yes" then
        if not lang then
@@ -3371,7 +3351,7 @@ end
 			end
 		end
 		
-		if matches[2] == "disable" then
+		if matches[2] == "disable"  or matches[2] == "غیرفعال" then
 			welcome = data[tostring(chat)]['settings']['welcome']
 			if welcome == "no" then
       if not lang then
@@ -3390,7 +3370,7 @@ end
 			end
 		end
 	end
-	if matches[1] == "setwelcome" and matches[2] and is_mod(msg) then
+	if matches[1] == "setwelcome" or matches[1] == "تنظیم ولکام" and matches[2] and is_mod(msg) then
 		data[tostring(chat)]['setwelcome'] = matches[2]
 	    save_data(_config.moderation.data, data)
        if not lang then
@@ -3466,9 +3446,23 @@ end
 	-- return msg
  end
 return {
-patterns ={
+patterns = {
+"^(تنظیم ولکام)$",
+"^(تنظیم ولکام) (.*)",
+"^(ولکام) (.*)$",
+"^(راهنما)$",
+"^(تنظیم زبان) (.*)$",
+"^(انتخاب مالک)$",
+"^(انتخاب مالک) (.*)$",
+"^(حذف مالک)$",
+"^(حذف مالک) (.*)$",
+"^(ادمین)$",
+"^(ادمین) (.*)$",
+"^(حذف ادمین)$",
+"^(حذف ادمین) (.*)$",
+"^(اضافه)$",
+"^(حذف)$",
 "^(قفل)$",
-"^(ایدی)$",
 "^[!/#](id)$",
 "^[!/#](id) (.*)$",
 "^[!/#](pin)$",
