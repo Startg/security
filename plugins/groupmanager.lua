@@ -2575,30 +2575,39 @@ tdcli_function ({
       end
    end
 
-if matches[1] == "lock" and is_mod(msg) then
+if matches[1] == "lock" or
+matches[1] == "قفل" and is_mod(msg) then
 local target = msg.to.id
-if matches[2] == "link" then
+if matches[2] == "link" or
+matches[2] == "لینک" then
 return lock_link(msg, data, target)
 end
-if matches[2] == "tag" then
+if matches[2] == "tag" or
+matches[2] == "تگ" then
 return lock_tag(msg, data, target)
 end
-if matches[2] == "mention" then
+if matches[2] == "mention" or
+matches[2] == "فراخوانی" then
 return lock_mention(msg, data, target)
 end
-if matches[2] == "arabic" then
+if matches[2] == "arabic" or
+matches[2] == "عربی" then
 return lock_arabic(msg, data, target)
 end
-if matches[2] == "edit" then
+if matches[2] == "edit" or
+matches[2] == "ویرایش" then
 return lock_edit(msg, data, target)
 end
-if matches[2] == "spam" then
+if matches[2] == "spam" or
+matches[2] == "اسپم" then
 return lock_spam(msg, data, target)
 end
-if matches[2] == "flood" then
+if matches[2] == "flood" or
+matches[2] == "فلود" then
 return lock_flood(msg, data, target)
 end
-if matches[2] == "bots" then
+if matches[2] == "bots" or
+matches[2] == "ربات" then
 return lock_bots(msg, data, target)
 end
 if matches[2] == "markdown" then
@@ -2751,7 +2760,8 @@ if matches[2] == "keyboard" then
 return unmute_keyboard(msg ,data, target)
 end
 end
-if matches[1] == "gpinfo" and is_mod(msg) and msg.to.type == "channel" then
+if matches[1] == "gpinfo" or
+matches[1] == "درباره گروه" and is_mod(msg) and msg.to.type == "channel" then
 local function group_info(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -2766,7 +2776,8 @@ end
 end
  tdcli.getChannelFull(msg.to.id, group_info, {chat_id=msg.to.id,msg_id=msg.id})
 end
-if matches[1] == 'newlink' and is_mod(msg) then
+if matches[1] == 'newlink' or
+matches[1] == 'لینک جدید' and is_mod(msg) then
 			local function callback_link (arg, data)
    local hash = "gp_lang:"..msg.to.id
    local lang = redis:get(hash)
@@ -2791,7 +2802,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
 			end
  tdcli.exportChatInviteLink(msg.to.id, callback_link, nil)
 		end
-		if matches[1] == 'setlink' and is_owner(msg) then
+		if matches[1] == 'setlink' or
+matches[1] == 'تنظیم لینک' and is_owner(msg) then
 			data[tostring(chat)]['settings']['linkgp'] = 'waiting'
 			save_data(_config.moderation.data, data)
       if not lang then
@@ -2813,7 +2825,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
 		 	end
        end
 		end
-    if matches[1] == 'link' and is_mod(msg) then
+    if matches[1] == 'link' or
+matches[1] == 'لینک' and is_mod(msg) then
       local linkgp = data[tostring(chat)]['settings']['linkgp']
       if not linkgp then
       if not lang then
@@ -2829,7 +2842,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
          end
         return tdcli.sendMessage(chat, msg.id, 1, text, 1, 'html')
      end
-    if matches[1] == 'linkpv' and is_mod(msg) then
+    if matches[1] == 'linkpv' or
+matches[1] == 'لینک پیوی' and is_mod(msg) then
       local linkgp = data[tostring(chat)]['settings']['linkgp']
       if not linkgp then
       if not lang then
@@ -2849,7 +2863,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
         return "_لینک گروه به چت خصوصی شما ارسال شد_"
         end
      end
-  if matches[1] == "setrules" and matches[2] and is_mod(msg) then
+  if matches[1] == "setrules" or
+matches[1] == "تنظیم قوانین" and matches[2] and is_mod(msg) then
     data[tostring(chat)]['rules'] = matches[2]
 	  save_data(_config.moderation.data, data)
      if not lang then
@@ -2858,7 +2873,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
   return "قوانین گروه ثبت شد"
    end
   end
-  if matches[1] == "rules" then
+  if matches[1] == "rules" or
+matches[1] == "قوانین" then
  if not data[tostring(chat)]['rules'] then
    if not lang then
      rules = "ℹ️ The Default Rules :\n1⃣ No Flood.\n2⃣ No Spam.\n3⃣ No Advertising.\n4⃣ Try to stay on topic.\n5⃣ Forbidden any racist, sexual, homophobic or gore content.\n➡️ Repeated failure to comply with these rules will cause ban.\n@sudo_star"
@@ -3451,6 +3467,8 @@ end
  end
 return {
 patterns ={
+"^(قفل)$",
+"^(ایدی)$",
 "^[!/#](id)$",
 "^[!/#](id) (.*)$",
 "^[!/#](pin)$",
