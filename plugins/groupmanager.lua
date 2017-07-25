@@ -2575,7 +2575,7 @@ tdcli_function ({
       end
    end
 
-if matches[1] == "lock" or        matches[1] == "قفل" and is_mod(msg) then
+if matches[1] == "lock" or        matches[1] == "قفل کردن" and is_mod(msg) then
 local target = msg.to.id
 if matches[2] == "link" or          matches[2] == "لینک" then
 return lock_link(msg, data, target)
@@ -3474,7 +3474,7 @@ patterns = {
 "^(حذف ادمین) (.*)$",
 "^(اضافه)$",
 "^(حذف)$",
-"^(قفل)$",
+"^(قفل کردن)$",
 "^(ایدی)$",
 "^(ایدی) (.*)$",
 "^(سنجاق)$",
