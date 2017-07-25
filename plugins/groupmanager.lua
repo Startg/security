@@ -2575,30 +2575,39 @@ tdcli_function ({
       end
    end
 
-if matches[1] == "lock" and is_mod(msg) then
+if matches[1] == "lock" or
+matches[1] == "قفل" and is_mod(msg) then
 local target = msg.to.id
-if matches[2] == "link" then
+if matches[2] == "link" or
+matches[2] == "لینک" then
 return lock_link(msg, data, target)
 end
-if matches[2] == "tag" then
+if matches[2] == "tag" or
+matches[2] == "تگ" then
 return lock_tag(msg, data, target)
 end
-if matches[2] == "mention" then
+if matches[2] == "mention" or
+matches[2] == "فراخوانی" then
 return lock_mention(msg, data, target)
 end
-if matches[2] == "arabic" then
+if matches[2] == "arabic" or
+matches[2] == "عربی" then
 return lock_arabic(msg, data, target)
 end
-if matches[2] == "edit" then
+if matches[2] == "edit" or
+matches[2] == "ویرایش" then
 return lock_edit(msg, data, target)
 end
-if matches[2] == "spam" then
+if matches[2] == "spam" or
+matches[2] == "اسپم" then
 return lock_spam(msg, data, target)
 end
-if matches[2] == "flood" then
+if matches[2] == "flood" or
+matches[2] == "فلود" then
 return lock_flood(msg, data, target)
 end
-if matches[2] == "bots" then
+if matches[2] == "bots" or
+matches[2] == "ربات" then
 return lock_bots(msg, data, target)
 end
 if matches[2] == "markdown" then
@@ -2751,7 +2760,8 @@ if matches[2] == "keyboard" then
 return unmute_keyboard(msg ,data, target)
 end
 end
-if matches[1] == "gpinfo" and is_mod(msg) and msg.to.type == "channel" then
+if matches[1] == "gpinfo" or
+matches[1] == "درباره گروه" and is_mod(msg) and msg.to.type == "channel" then
 local function group_info(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -2766,7 +2776,8 @@ end
 end
  tdcli.getChannelFull(msg.to.id, group_info, {chat_id=msg.to.id,msg_id=msg.id})
 end
-if matches[1] == 'newlink' and is_mod(msg) then
+if matches[1] == 'newlink' or
+matches[1] == 'لینک جدید' and is_mod(msg) then
 			local function callback_link (arg, data)
    local hash = "gp_lang:"..msg.to.id
    local lang = redis:get(hash)
@@ -2791,7 +2802,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
 			end
  tdcli.exportChatInviteLink(msg.to.id, callback_link, nil)
 		end
-		if matches[1] == 'setlink' and is_owner(msg) then
+		if matches[1] == 'setlink' or
+matches[1] == 'تنظیم لینک' and is_owner(msg) then
 			data[tostring(chat)]['settings']['linkgp'] = 'waiting'
 			save_data(_config.moderation.data, data)
       if not lang then
@@ -2813,7 +2825,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
 		 	end
        end
 		end
-    if matches[1] == 'link' and is_mod(msg) then
+    if matches[1] == 'link' or
+matches[1] == 'لینک' and is_mod(msg) then
       local linkgp = data[tostring(chat)]['settings']['linkgp']
       if not linkgp then
       if not lang then
@@ -2829,7 +2842,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
          end
         return tdcli.sendMessage(chat, msg.id, 1, text, 1, 'html')
      end
-    if matches[1] == 'linkpv' and is_mod(msg) then
+    if matches[1] == 'linkpv' or
+matches[1] == 'لینک پیوی' and is_mod(msg) then
       local linkgp = data[tostring(chat)]['settings']['linkgp']
       if not linkgp then
       if not lang then
@@ -2849,7 +2863,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
         return "_لینک گروه به چت خصوصی شما ارسال شد_"
         end
      end
-  if matches[1] == "setrules" and matches[2] and is_mod(msg) then
+  if matches[1] == "setrules" or
+matches[1] == "تنظیم قوانین" and matches[2] and is_mod(msg) then
     data[tostring(chat)]['rules'] = matches[2]
 	  save_data(_config.moderation.data, data)
      if not lang then
@@ -2858,7 +2873,8 @@ if matches[1] == 'newlink' and is_mod(msg) then
   return "قوانین گروه ثبت شد"
    end
   end
-  if matches[1] == "rules" then
+  if matches[1] == "rules" or
+matches[1] == "قوانین" then
  if not data[tostring(chat)]['rules'] then
    if not lang then
      rules = "ℹ️ The Default Rules :\n1⃣ No Flood.\n2⃣ No Spam.\n3⃣ No Advertising.\n4⃣ Try to stay on topic.\n5⃣ Forbidden any racist, sexual, homophobic or gore content.\n➡️ Repeated failure to comply with these rules will cause ban.\n@sudo_star"
@@ -3067,69 +3083,70 @@ end
 if matches[1] == "help" and is_mod(msg) then
 if not lang then
 text = [[
-*Beyond Bot Commands:*
-*!setowner* `[username|id|reply]` 
+◎﷽ًٍ͜͜͝⇮ოЯ.ρσOⓚεЯ⇮ًٍ͜͜͝﷽◎:
+*sky bot:*
+*!setowner* [username|id|reply] 
 _Set Group Owner(Multi Owner)_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!remowner* `[username|id|reply]` 
+*!remowner* [username|id|reply] 
  _Remove User From Owner List_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!promote* `[username|id|reply]` 
+*!promote* [username|id|reply] 
 _Promote User To Group Admin_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!demote* `[username|id|reply]` 
+*!demote* [username|id|reply] 
 _Demote User From Group Admins List_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!setflood* `[1-50]`
+*!setflood* [1-50]
 _Set Flooding Number_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!silent* `[username|id|reply]` 
+*!silent* [username|id|reply] 
 _Silent User From Group_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!unsilent* `[username|id|reply]` 
+*!unsilent* [username|id|reply] 
 _Unsilent User From Group_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!kick* `[username|id|reply]` 
+*!kick* [username|id|reply] 
 _Kick User From Group_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!ban* `[username|id|reply]` 
+*!ban* [username|id|reply] 
 _Ban User From Group_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!unban* `[username|id|reply]` 
+*!unban* [username|id|reply] 
 _UnBan User From Group_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!res* `[username]`
+*!res* [username]
 _Show User ID_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!id* `[reply]`
+*!id* [reply]
 _Show User ID_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!whois* `[id]`
+*!whois* [id]
 _Show User's Username And Name_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!lock* `[link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | pin]`
+*!lock* [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | pin]
 _If This Actions Lock, Bot Check Actions And Delete Them_
-*!unlock* `[link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | pin]`
+*!unlock* [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | pin]
 _If This Actions Unlock, Bot Not Delete Them_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!mute* `[gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]`
+*!mute* [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
 _If This Actions Lock, Bot Check Actions And Delete Them_
-*!unmute* `[gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]`
+*!unmute* [gif | photo | document | sticker | keyboard | video | text | forward | location | audio | voice | contact | all]
 _If This Actions Unlock, Bot Not Delete Them_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!set*`[rules | name | photo | link | about | welcome]`
+*!set*[rules | name | photo | link | about | welcome]
 _Bot Set Them_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!clean* `[bans | mods | bots | rules | about | silentlist | filtelist | welcome]`   
+*!clean* [bans | mods | bots | rules | about | silentlist | filtelist | welcome]   
 _Bot Clean Them_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!filter* `[word]`
+*!filter* [word]
 _Word filter_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!unfilter* `[word]`
+*!unfilter* [word]
 _Word unfilter_
 〰〰〰〰〰〰〰〰〰〰〰〰
-*!pin* `[reply]`
+*!pin* [reply]
 _Pin Your Message_
 〰〰〰〰〰〰〰〰〰〰〰〰
 *!unpin* 
@@ -3238,7 +3255,9 @@ text = [[
 !ban [username|id|reply] 
 مسدود کردن کاربر از گروه
 〰〰〰〰〰〰〰〰〰〰〰〰
-!unban [username|id|reply] 
+!unban
+
+[username|id|reply] 
 در آوردن از حالت مسدودیت کاربر از گروه
 〰〰〰〰〰〰〰〰〰〰〰〰
 !res [username]
@@ -3375,7 +3394,6 @@ text = [[
 /kickme
 خارج شدن از گروه بصورت داوطلبانه
 〰〰〰〰〰〰〰〰〰〰〰〰
-
 !clean [bans | mods | bots | rules | about | silentlist | filterlist | welcome]   
 
 پاکسازی لیست افراد  مسدود/سکوت/مدیر/مالک شده
@@ -3459,7 +3477,7 @@ local lang = redis:get(hash)
      welcome = administration[arg.chat_id]['setwelcome']
       else
      if not lang then
-     welcome = "*ωєℓ¢σмє ∂υ∂є*"
+     welcome = "*Welcome Dude*"
     elseif lang then
      welcome = "_خوش آمدید_"
         end
@@ -3468,9 +3486,9 @@ local lang = redis:get(hash)
 rules = administration[arg.chat_id]['rules']
 else
    if not lang then
-     rules = "ℹ️ тнє ∂єƒαυℓт яυℓєѕ :\η1⃣ ησ ƒℓσσ∂.\η2⃣ ησ ѕραм.\η3⃣ ησ α∂νєятιѕιηg.\η4⃣ тяу тσ ѕтαу ση тσρι¢.\η5⃣ ƒσявι∂∂єη αηу яα¢ιѕт, ѕєχυαℓ, нσмσρнσвι¢ σя gσяє ¢σηтєηт.\η➡️ яєρєαтє∂ ƒαιℓυяє тσ ¢σмρℓу ωιтн тнєѕє яυℓєѕ ωιℓℓ ¢αυѕє вαη.\n@SkYTeaM"
+     rules = "ℹ️ The Default Rules :\n1⃣ No Flood.\n2⃣ No Spam.\n3⃣ No Advertising.\n4⃣ Try to stay on topic.\n5⃣ Forbidden any racist, sexual, homophobic or gore content.\n➡️ Repeated failure to comply with these rules will cause ban.\n@skyteam"
     elseif lang then
-       rules = "ℹ️ قوانین پپیشفرض:\n1⃣ ارسال پیام مکرر ممنوع.\n2⃣ اسپم ممنوع.\n3⃣ تبلیغ ممنوع.\n4⃣ سعی کنید از موضوع خارج نشید.\n5⃣ هرنوع نژاد پرستی, شاخ بازی و پورنوگرافی ممنوع .\n➡️ از قوانین پیروی کنید, در صورت عدم رعایت قوانین اول اخطار و در صورت تکرار مسدود.\n@SkYTeaM"
+       rules = "ℹ️ قوانین پپیشفرض:\n1⃣ ارسال پیام مکرر ممنوع.\n2⃣ اسپم ممنوع.\n3⃣ تبلیغ ممنوع.\n4⃣ سعی کنید از موضوع خارج نشید.\n5⃣ هرنوع نژاد پرستی, شاخ بازی و پورنوگرافی ممنوع .\n➡️ از قوانین پیروی کنید, در صورت عدم رعایت قوانین اول اخطار و در صورت تکرار مسدود.\n@skyteam"
  end
 end
 if data.username_ then
