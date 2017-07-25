@@ -3209,7 +3209,7 @@ _Show Fun Help_
 _You Can Use_ *[!/#]* _To Run The Commands_
 _This Help List Only For_ *Moderators/Owners!*
 _Its Means, Only Group_ *Moderators/Owners* _Can Use It!_
-*Good luck ;)*]]
+*Good luck ;)*]]..msg_caption
 
 elseif lang then
 
@@ -3225,7 +3225,7 @@ text = [[
 —〰〰〰〰〰〰〰〰〰〰〰〰
 تنظیمات لیست میوت
 /mutelist
-—〰〰〰〰〰〰〰〰〰〰〰〰
+〰〰〰〰〰〰〰〰〰〰〰〰
 دستورات ربات sky :
 
 !setowner [username|id|reply] 
@@ -3274,7 +3274,7 @@ text = [[
 
 !unlock [link | tag | edit | arabic | webpage | bots | spam | flood | markdown | mention | fosh | mention |pin]
 
-—〰〰〰〰〰〰〰〰〰〰〰〰
+〰〰〰〰〰〰〰〰〰〰〰〰
 برای پین کردن متنی در گروه شما میتوانید پیام مورد نظر را ریپلای کرده و
 /pin
  برای غیر فعال کردن پیام
@@ -3291,7 +3291,7 @@ text = [[
 استفاده کنید 
 مثال:
 /setweclome سلام {name} خوش اومدی
-—〰〰〰〰〰〰〰〰〰〰〰〰
+〰〰〰〰〰〰〰〰〰〰〰〰
 
 /setflood
 تنظیم تعداد پیام مکرر مجاز
@@ -3308,7 +3308,7 @@ text = [[
 /filterlist
 را ارسال کنید
 
-—〰〰〰〰〰〰〰〰〰〰〰〰
+〰〰〰〰〰〰〰〰〰〰〰〰
 
 برای قفل کردن گروه برای زمان مشخص به شکل زیر عمل کنید
 
@@ -3319,11 +3319,11 @@ text = [[
 
 /mt 1 20 4
 
-—〰〰〰〰〰〰〰〰〰〰〰〰
+〰〰〰〰〰〰〰〰〰〰〰〰
 تعیین وضعیت خروج داوطلبانه
 /stats kickme [active/off]
 
-—〰〰〰〰〰〰〰〰〰〰〰〰
+〰〰〰〰〰〰〰〰〰〰〰〰
 /ban [ریپلی و آیدی]
 مسدود کردن کاربر
 〰〰〰〰〰〰〰〰〰〰〰〰
@@ -3397,14 +3397,11 @@ text = [[
 !clean [bans | mods | bots | rules | about | silentlist | filterlist | welcome]   
 
 پاکسازی لیست افراد  مسدود/سکوت/مدیر/مالک شده
-—〰〰〰〰〰〰〰〰〰〰〰〰
+〰〰〰〰〰〰〰〰〰〰〰〰
 🔊دستورات فان و تولز!🍃
 !fun help | راهنما فان
 〰〰〰〰〰〰〰〰〰〰〰〰
 !helptools
-—〰〰〰〰〰〰〰〰〰〰〰〰
-🔇برای دیدن دستورات فارسی ربات  
-!helpfa | دستورات مدیریتی
 〰〰〰〰〰〰〰〰〰〰〰〰
 ⚠️شما میتوانید از ! و # و / در اول دستور ها استفاده کنید
 ⚠️هرگونه سوال و انتقاد یا پیشنهادخود را میتوانید در گروه پشتیبانی مطرح کنید
