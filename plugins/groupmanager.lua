@@ -1410,7 +1410,7 @@ else
 data[tostring(target)]["mutes"]["mute_all"] = "no"
  save_data(_config.moderation.data, data) 
 if not lang then
-return "*Mute All* _Has Been Disabled_ \n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "------").."]"
+return "*Mute All* _Has Been Disabled_   \n*〰〰〰〰〰〰〰〰*\n* group name :  '..msg.to.title..'\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "------").."]"
 else
 return "بیصدا کردن همه غیر فعال شد \n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "------").."]"
 end 
