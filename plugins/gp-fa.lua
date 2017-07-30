@@ -2669,56 +2669,74 @@ return "*زبان گروه تنظیم شد به : فارسی*"
 end
 end
 --------------------- Welcome -----------------------
-local lang = redis:get("gp_lang:"..msg.chat_id_)
-----------------------------------------
-if matches[1] == 'تنظیم ولکام' and matches[2] then
-	if not lang then
-		welcome = check_markdown(matches[2])
-		redis:hset('beyond_welcome',msg.chat_id_,tostring(welcome))
-		tdcli.sendMessage(msg.chat_id_, msg.id_, 1, 'Welcome Message Seted :\n\n'..matches[2], 1, 'md')
-	else
-		welcome = check_markdown(matches[2])
-		redis:hset('beyond_welcome',msg.chat_id_,tostring(welcome))
-		tdcli.sendMessage(msg.chat_id_, msg.id_, 1, 'پیام خوش آمد ثبت شد:\n\n'..matches[2], 1, 'md')
-	end
-end
------------------------------------------
-if matches[1] == 'حذف ولکام' then
-	if not lang then
-		if not redis:hget('beyond_welcome',msg.chat_id_) then
-			tdcli.sendMessage(msg.chat_id_, msg.id_, 1, 'Already No welcome message available!', 1, 'md')
-		else
-			redis:hdel('beyond_welcome',msg.chat_id_)
-			tdcli.sendMessage(msg.chat_id_, msg.id_, 1, 'Weclome Message Deleted!', 1, 'md')
+	if matches[1] == "ولکام" and is_mod(msg) then
+		if matches[2] == "فعال" then
+			welcome = data[tostring(chat)]['settings']['welcome']
+			if welcome == "yes" then
+       if not lang then
+				return "_Group_ *welcome* _is already enabled_"
+       elseif lang then
+				return "_خوشآمد گویی از قبل فعال بود_"
+           end
+			else
+		data[tostring(chat)]['settings']['welcome'] = "yes"
+	    save_data(_config.moderation.data, data)
+       if not lang then
+				return "_Group_ *welcome* _has been enabled_"
+       elseif lang then
+				return "_خوشآمد گویی فعال شد_"
+          end
+			end
 		end
-	else
-		if not redis:hget('beyond_welcome',msg.chat_id_) then
-			tdcli.sendMessage(msg.chat_id_, msg.id_, 1, 'در حال حاضر هیچ پیام خوش آمد گویی وجود ندارد !', 1, 'md')
-		else
-			welcome = check_markdown(matches[2])
-			redis:hdel('beyond_welcome',msg.chat_id_)
-			tdcli.sendMessage(msg.chat_id_, msg.id_, 1, 'پیام خوش آمد گویی حذف شد', 1, 'md')
+		
+		if matches[2] == "غیرفعال" then
+			welcome = data[tostring(chat)]['settings']['welcome']
+			if welcome == "no" then
+      if not lang then
+				return "_Group_ *Welcome* _is already disabled_"
+      elseif lang then
+				return "_خوشآمد گویی از قبل فعال نبود_"
+         end
+			else
+		data[tostring(chat)]['settings']['welcome'] = "no"
+	    save_data(_config.moderation.data, data)
+      if not lang then
+				return "_Group_ *welcome* _has been disabled_"
+      elseif lang then
+				return "_خوشآمد گویی غیرفعال شد_"
+          end
+			end
 		end
 	end
-end
+	if matches[1] == "تنظیم ولکام" and matches[2] and is_mod(msg) then
+		data[tostring(chat)]['setwelcome'] = matches[2]
+	    save_data(_config.moderation.data, data)
+       if not lang then
+		return "_Welcome Message Has Been Set To :_\n*"..matches[2].."*\n\n*You can use :*\n_{gpname} Group Name_\n_{rules} ➣ Show Group Rules_\n_{name} ➣ New Member First Name_\n_{username} ➣ New Member Username_"
+       else
+		return "_پیام خوشآمد گویی تنظیم شد به :_\n*"..matches[2].."*\n\n*شما میتوانید از*\n_{gpname} نام گروه_\n_{rules} ➣ نمایش قوانین گروه_\n_{name} ➣ نام کاربر جدید_\n_{username} ➣ نام کاربری کاربر جدید_\n_استفاده کنید_"
+        end
+     end
+	end
 end
 -----------------------------------------
 local function pre_process(msg)
-	if msg.content_.members_ then
-		if redis:hget('beyond_welcome',msg.chat_id_) then
-			if msg.content_.members_[0] then
-				name = msg.content_.members_[0].first_name_
-				if msg.content_.members_[0].type_.ID == 'UserTypeBot' then
-					return nil
-				else
-					data = redis:hget('beyond_welcome',msg.chat_id_)
-					if data:match('{name}') then
-						out = data:gsub('{name}',name)
-					else
-						out = data
-					end
-						tdcli.sendMessage(msg.chat_id_, msg.id_, 1, tostring(out:gsub('\\_','_')), 1, 'md')
-				end
+   local chat = msg.to.id
+   local user = msg.from.id
+ local data = load_data(_config.moderation.data)
+	local function welcome_cb(arg, data)
+local hash = "gp_lang:"..arg.chat_id
+local lang = redis:get(hash)
+		administration = load_data(_config.moderation.data)
+    if administration[arg.chat_id]['setwelcome'] then
+     welcome = administration[arg.chat_id]['setwelcome']
+      else
+     if not lang then
+     welcome = "*Welcome Dude*"
+    elseif lang then
+     welcome = "_خوش آمدید_"
+        end
+      end
 			end
 		end
 	end
@@ -2764,7 +2782,7 @@ patterns ={
 "^([https?://w]*.?t.me/joinchat/%S+)$",
 "^([https?://w]*.?telegram.me/joinchat/%S+)$",
 "^(تنظیم ولکام) (.*)",
-"^(حذف ولکام)$",
+"^(ولکام) (.*)",
 "^(فیلتر) (.*)$",
 "^(حذف فیلتر) (.*)$",
 "^(لیست فیلتر)$"
