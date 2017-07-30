@@ -7,7 +7,7 @@ local function pre_process(msg)
  end
  
 local function run(msg, matches)
-  if matches[1]:lower() == 'mt' and is_admin(msg) then
+  if matches[1]:lower() == 'mt' or matches[1] == 'سکوت'  and is_admin(msg) then
      local hash = 'mute_time:'..msg.chat_id_
      if not matches[2] then
 		return "_لطفا ساعت و دقیقه را وارد نمایید!_"
@@ -21,7 +21,7 @@ local function run(msg, matches)
      return "⛔️گروه به مدت: \n`"..matches[2].."` ساعت\n`"..matches[3].."` دقیقه \nتعطیل میباشد.️"
     end
   end
-  if matches[1]:lower() == 'unmt' and is_admin(msg) then
+  if matches[1]:lower() == 'unmt' or matches[1] == 'لغو سکوت' and is_admin(msg) then
      local hash = 'mute_time:'..msg.chat_id_
      redis:del(hash)
      return "*✅گروه برای ارسال پیام کاربران باز شد.*"
@@ -30,10 +30,13 @@ end
 return {
    patterns = {
       '^[/!#]([Mm][Tt])$',
+      '^(لغو سکوت)$',
+      '^(سکوت)$',
+      '^(سکوت) (%d+) (%d+)$',
       '^[/!#]([Uu][Nn][Mm][Tt])$',
 	  '^[/!#]([Mm][Tt]) (%d+) (%d+)$',
  },
   run = run,
   pre_process = pre_process
 }
---end by #@To0fan#
+--end by #mr.poker#

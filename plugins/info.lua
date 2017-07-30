@@ -1,249 +1,239 @@
---[[
-#
-# Show users information in groups 
-#
-# author: Arian < @Dragon_Born > 
-# our channel: @GPMod
-# Version: 2016-04-02
-#
-# Features added:
-# -- setrank on reply
-# -- get users info with their IDs and @username
-#
-]]
 
-do
-local Arian = 364347806 --put your id here(BOT OWNER ID)
-
-local function setrank(msg, name, value) -- setrank function
+local Solid = 267785153
+local function setrank(msg, user_id, value,chat_id)
   local hash = nil
-  if msg.to.type == 'chat' then
+
     hash = 'rank:'..msg.to.id..':variables'
-  end
+
   if hash then
-    redis:hset(hash, name, value)
-	return send_msg('chat#id'..msg.to.id, 'مقام کاربر ('..name..') به '..value..' تغییر داده شد ', ok_cb,  true)
+    redis:hset(hash, user_id, value)
+  return tdcli.sendMessage(chat_id, '', 0, '_set_ *Rank* _for_ *[ '..user_id..' ]* _To :_ *'..value..'*', 0, "md")
   end
 end
-local function res_user_callback(extra, success, result) -- /info <username> function
-  if success == 1 then  
-  if result.username then
-   Username = '@'..result.username
-   else
-   Username = 'ندارد'
+local function info_by_reply(arg, data)
+    if tonumber(data.sender_user_id_) then
+local function info_cb(arg, data)
+    if data.username_ then
+  username = "@"..check_markdown(data.username_)
+    else
+  username = ""
   end
-    local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
-               ..'یوزر: '..Username..'\n'
-               ..'ایدی کاربری : '..result.id..'\n\n'
-	local hash = 'rank:'..extra.chat2..':variables'
-	local value = redis:hget(hash, result.id)
-    if not value then
-	 if result.id == tonumber(Arian) then
-	   text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
-	  elseif is_admin2(result.id) then
-	   text = text..'مقام : ادمین ربات (Admin) \n\n'
-	  elseif is_owner2(result.id, extra.chat2) then
-	   text = text..'مقام : مدیر کل گروه (Owner) \n\n'
-	  elseif is_momod2(result.id, extra.chat2) then
-	    text = text..'مقام : مدیر گروه (Moderator) \n\n'
-      else
-	    text = text..'مقام : کاربر (Member) \n\n'
-	 end
-   else
-   text = text..'مقام : '..value..'\n\n'
+    if data.first_name_ then
+  firstname = check_markdown(data.first_name_)
+    else
+  firstname = ""
   end
-  local uhash = 'user:'..result.id
-  local user = redis:hgetall(uhash)
-  local um_hash = 'msgs:'..result.id..':'..extra.chat2
-  user_info_msgs = tonumber(redis:get(um_hash) or 0)
-  text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'https://telegram.me/sudo_star'
-  send_msg(extra.receiver, text, ok_cb,  true)
-  else
-	send_msg(extra.receiver, extra.user..' نام کاربری مورد نظر یافت نشد.', ok_cb, false)
+    if data.last_name_ then
+  lastname = check_markdown(data.last_name_)
+    else
+  lastname = ""
   end
-end
-
-local function action_by_id(extra, success, result)  -- /info <ID> function
- if success == 1 then
- if result.username then
-   Username = '@'..result.username
-   else
-   Username = 'ندارد'
- end
-    local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
-               ..'یوزر: '..Username..'\n'
-               ..'ایدی کاربری : '..result.id..'\n\n'
-  local hash = 'rank:'..extra.chat2..':variables'
-  local value = redis:hget(hash, result.id)
-  if not value then
-	 if result.id == tonumber(Arian) then
-	   text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
-	  elseif is_admin2(result.id) then
-	   text = text..'مقام : ادمین ربات (Admin) \n\n'
-	  elseif is_owner2(result.id, extra.chat2) then
-	   text = text..'مقام : مدیر کل گروه (Owner) \n\n'
-	  elseif is_momod2(result.id, extra.chat2) then
-	   text = text..'مقام : مدیر گروه (Moderator) \n\n'
-	  else
-	   text = text..'مقام : کاربر (Member) \n\n'
-	  end
-   else
-    text = text..'مقام : '..value..'\n\n'
-  end
-  local uhash = 'user:'..result.id
-  local user = redis:hgetall(uhash)
-  local um_hash = 'msgs:'..result.id..':'..extra.chat2
-  user_info_msgs = tonumber(redis:get(um_hash) or 0)
-  text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'@skyteam'
-  send_msg(extra.receiver, text, ok_cb,  true)
-  else
-  send_msg(extra.receiver, 'ایدی شخص مورد نظر در سیستم ثبت نشده است.\nاز دستور زیر استفاده کنید\n/info @username', ok_cb, false)
-  end
-end
-
-local function action_by_reply(extra, success, result)-- (reply) /info  function
-		if result.from.username then
-		   Username = '@'..result.from.username
-		   else
-		   Username = 'ندارد'
-		 end
-    local text = 'نام کامل : '..(result.from.first_name or '')..' '..(result.from.last_name or '')..'\n'
-               ..'یوزر: '..Username..'\n'
-               ..'ایدی کاربری : '..result.from.id..'\n\n'
-	local hash = 'rank:'..result.to.id..':variables'
-		local value = redis:hget(hash, result.from.id)
-		 if not value then
-		    if result.from.id == tonumber(Arian) then
-		       text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
-		     elseif is_admin2(result.from.id) then
-		       text = text..'مقام : ادمین ربات (Admin) \n\n'
-		     elseif is_owner2(result.from.id, result.to.id) then
-		       text = text..'مقام : مدیر کل گروه (Owner) \n\n'
-		     elseif is_momod2(result.from.id, result.to.id) then
-		       text = text..'مقام : مدیر گروه (Moderator) \n\n'
+	local hash = 'rank:'..arg.chat_id..':variables'
+   local text = "_First name :_ *"..firstname.."*\n_Last name :_ *"..lastname.."*\n_Username :_ "..username.."\n_ID :_ *"..data.id_.."*\n\n"
+		    if data.id_ == tonumber(Solid) then
+		       text = text..'_Rank :_ *Executive Admin*\n\n'
+			   elseif is_sudo1(data.id_) then
+	           text = text..'_Rank :_ *Full Access Admin*\n\n'
+		     elseif is_admin1(data.id_) then
+		       text = text..'_Rank :_ *Bot Admin*\n\n'
+		     elseif is_owner1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Owner*\n\n'
+		     elseif is_mod1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Moderator*\n\n'
 		 else
-		       text = text..'مقام : کاربر (Member) \n\n'
+		       text = text..'_Rank :_ *Group Member*\n\n'
 			end
-		  else
-		   text = text..'مقام : '..value..'\n\n'
-		 end
-         local user_info = {}
-  local uhash = 'user:'..result.from.id
+         local user_info = {} 
+  local uhash = 'user:'..data.id_
   local user = redis:hgetall(uhash)
-  local um_hash = 'msgs:'..result.from.id..':'..result.to.id
+  local um_hash = 'msgs:'..data.id_..':'..arg.chat_id
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
-  text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..' https://telegram.me/sudo_star'
-  send_msg(extra.receiver, text, ok_cb, true)
+  text = text..'Total messages : '..user_info_msgs..'\n\n'
+  text = text..'@BeyondTeam'
+  tdcli.sendMessage(arg.chat_id, arg.msgid, 0, text, 0, "md")
+end
+tdcli_function ({
+    ID = "GetUser",
+    user_id_ = data.sender_user_id_
+  }, info_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_,msgid=data.id_})
+    else
+tdcli.sendMessage(data.chat_id_, "", 0, "*User not found*", 0, "md")
+   end
 end
 
-local function action_by_reply2(extra, success, result)
-local value = extra.value
-setrank(result, result.from.id, value)
+local function info_by_username(arg, data)
+    if tonumber(data.id_) then
+    if data.type_.user_.username_ then
+  username = "@"..check_markdown(data.type_.user_.username_)
+    else
+  username = ""
+  end
+    if data.type_.user_.first_name_ then
+  firstname = check_markdown(data.type_.user_.first_name_)
+    else
+  firstname = ""
+  end
+    if data.type_.user_.last_name_ then
+  lastname = check_markdown(data.type_.user_.last_name_)
+    else
+  lastname = ""
+  end
+	local hash = 'rank:'..arg.chat_id..':variables'
+   local text = "_First name :_ *"..firstname.."*\n_Last name :_ *"..lastname.."*\n_Username :_ "..username.."\n_ID :_ *"..data.id_.."*\n\n"
+		    if data.id_ == tonumber(Solid) then
+		       text = text..'_Rank :_ *Executive Admin*\n\n'
+			   elseif is_sudo1(data.id_) then
+	           text = text..'_Rank :_ *Full Access Admin*\n\n'
+		     elseif is_admin1(data.id_) then
+		       text = text..'_Rank :_ *Bot Admin*\n\n'
+		     elseif is_owner1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Owner*\n\n'
+		     elseif is_mod1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Moderator*\n\n'
+		 else
+		       text = text..'_Rank :_ *Group Member*\n\n'
+			end
+         local user_info = {} 
+  local uhash = 'user:'..data.id_
+  local user = redis:hgetall(uhash)
+  local um_hash = 'msgs:'..data.id_..':'..arg.chat_id
+  user_info_msgs = tonumber(redis:get(um_hash) or 0)
+  text = text..'Total messages : '..user_info_msgs..'\n\n'
+  text = text..'@skyteam'
+  tdcli.sendMessage(arg.chat_id, arg.msgid, 0, text, 0, "md")
+   else
+   tdcli.sendMessage(arg.chat_id, "", 0, "*User not found*", 0, "md")
+  end
+end
+
+local function info_by_id(arg, data)
+      if tonumber(data.id_) then
+    if data.username_ then
+  username = "@"..check_markdown(data.username_)
+    else
+  username = ""
+  end
+    if data.first_name_ then
+  firstname = check_markdown(data.first_name_)
+    else
+  firstname = ""
+  end
+    if data.last_name_ then
+  lastname = check_markdown(data.last_name_)
+    else
+  lastname = ""
+  end
+	local hash = 'rank:'..arg.chat_id..':variables'
+   local text = "_First name :_ *"..firstname.."*\n_Last name :_ *"..lastname.."*\n_Username :_ "..username.."\n_ID :_ *"..data.id_.."*\n\n"
+		    if data.id_ == tonumber(Solid) then
+		       text = text..'_Rank :_ *Executive Admin*\n\n'
+			   elseif is_sudo1(data.id_) then
+	           text = text..'_Rank :_ *Full Access Admin*\n\n'
+		     elseif is_admin1(data.id_) then
+		       text = text..'_Rank :_ *Bot Admin*\n\n'
+		     elseif is_owner1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Owner*\n\n'
+		     elseif is_mod1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Moderator*\n\n'
+		 else
+		       text = text..'_Rank :_ *Group Member*\n\n'
+			end
+         local user_info = {} 
+  local uhash = 'user:'..data.id_
+  local user = redis:hgetall(uhash)
+  local um_hash = 'msgs:'..data.id_..':'..arg.chat_id
+  user_info_msgs = tonumber(redis:get(um_hash) or 0)
+  text = text..'Total messages : '..user_info_msgs..'\n\n'
+  text = text..'@skyteam'
+  tdcli.sendMessage(arg.chat_id, arg.msgid, 0, text, 0, "md")
+   else
+   tdcli.sendMessage(arg.chat_id, "", 0, "*User not found*", 0, "md")
+   end
+end
+
+local function setrank_by_reply(arg, data)
+
 end
 
 local function run(msg, matches)
- if matches[1]:lower() == 'setrank' then
-  local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
-  redis:incr(hash)
-  if not is_sudo(msg) then
-    return "Only for Sudo"
+if matches[1] == "اطلاعات من" or matches[1] == "info"  then
+if not matches[2] and tonumber(msg.reply_to_message_id_) ~= 0 then
+    tdcli_function ({
+      ID = "GetMessage",
+      chat_id_ = msg.chat_id_,
+      message_id_ = msg.reply_to_message_id_
+    }, info_by_reply, {chat_id=msg.chat_id_})
   end
-  local receiver = get_receiver(msg)
-  local Reply = msg.reply_id
-  if msg.reply_id then
-  local value = string.sub(matches[2], 1, 1000)
-    msgr = get_message(msg.reply_id, action_by_reply2, {receiver=receiver, Reply=Reply, value=value})
-  else
-  local name = string.sub(matches[2], 1, 50)
-  local value = string.sub(matches[3], 1, 1000)
-  local text = setrank(msg, name, value)
-
-  return text
-  end
-  end
- if matches[1]:lower() == 'info' and not matches[2] then
-  local receiver = get_receiver(msg)
-  local Reply = msg.reply_id
-  if msg.reply_id then
-    msgr = get_message(msg.reply_id, action_by_reply, {receiver=receiver, Reply=Reply})
-  else
-  if msg.from.username then
-   Username = '@'..msg.from.username
-   else
-   Username = 'ندارد'
-   end
-   local text = 'نام : '..(msg.from.first_name or 'ندارد')..'\n'
-   local text = text..'فامیل : '..(msg.from.last_name or 'ندارد')..'\n'	
-   local text = text..'یوزر : '..Username..'\n'
-   local text = text..'ایدی کاربری : '..msg.from.id..'\n\n'
-   local hash = 'rank:'..msg.to.id..':variables'
-	if hash then
-	  local value = redis:hget(hash, msg.from.id)
-	  if not value then
-		if msg.from.id == tonumber(Arian) then
-		 text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
-		elseif is_sudo(msg) then
-		 text = text..'مقام : ادمین ربات (Admin) \n\n'
-		elseif is_owner(msg) then
-		 text = text..'مقام : مدیر کل گروه (Owner) \n\n'
-		elseif is_momod(msg) then
-		 text = text..'مقام : مدیر گروه (Moderator) \n\n'
-		else
-		 text = text..'مقام : کاربر (Member) \n\n'
-		end
-	  else
-	   text = text..'مقام : '..value..'\n'
-	  end
-	end
-    
-	 local uhash = 'user:'..msg.from.id
- 	 local user = redis:hgetall(uhash)
-  	 local um_hash = 'msgs:'..msg.from.id..':'..msg.to.id
-	 user_info_msgs = tonumber(redis:get(um_hash) or 0)
-	 text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-	 if msg.to.type == 'chat' then
-	 text = text..'نام گروه : '..msg.to.title..'\n'
-     text = text..'ایدی گروه : '..msg.to.id
+  if matches[2] and string.match(matches[2], '^%d+$') and tonumber(msg.reply_to_message_id_) == 0 then
+tdcli_function ({
+    ID = "GetUser",
+    user_id_ = matches[2],
+  }, info_by_id, {chat_id=msg.chat_id_,user_id=matches[2],msgid=msg.id_})
     end
-	text = text..'\n\n https://telegram.me/sudo_star'
-    return send_msg(receiver, text, ok_cb, true)
-    end
+  if matches[2] and not string.match(matches[2], '^%d+$') and tonumber(msg.reply_to_message_id_) == 0 then
+   tdcli_function ({
+      ID = "SearchPublicChat",
+      username_ = matches[2]
+    }, info_by_username, {chat_id=msg.chat_id_,username=matches[2],msgid=msg.id_})
+      end
+  if not matches[2] and tonumber(msg.reply_to_message_id_) == 0 then
+local function info2_cb(arg, data)
+      if tonumber(data.id_) then
+    if data.username_ then
+  username = "@"..check_markdown(data.username_)
+    else
+  username = ""
   end
-  if matches[1]:lower() == 'info' and matches[2] then
-   local user = matches[2]
-   local chat2 = msg.to.id
-   local receiver = get_receiver(msg)
-   if string.match(user, '^%d+$') then
-	  user_info('user#id'..user, action_by_id, {receiver=receiver, user=user, text=text, chat2=chat2})
-    elseif string.match(user, '^@.+$') then
-      username = string.gsub(user, '@', '')
-      msgr = res_user(username, res_user_callback, {receiver=receiver, user=user, text=text, chat2=chat2})
+    if data.first_name_ then
+  firstname = check_markdown(data.first_name_)
+    else
+  firstname = ""
+  end
+    if data.last_name_ then
+  lastname = check_markdown(data.last_name_)
+    else
+  lastname = ""
+  end
+	local hash = 'rank:'..arg.chat_id..':variables'
+   local text = "_First name :_ *"..firstname.."*\n_Last name :_ *"..lastname.."*\n_Username :_ "..username.."\n_ID :_ *"..data.id_.."*\n\n"
+		    if data.id_ == tonumber(Solid) then
+		       text = text..'_Rank :_ *Executive Admin*\n\n'
+			   elseif is_sudo1(data.id_) then
+	           text = text..'_Rank :_ *Full Access Admin*\n\n'
+		     elseif is_admin1(data.id_) then
+		       text = text..'_Rank :_ *Bot Admin*\n\n'
+		     elseif is_owner1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Owner*\n\n'
+		     elseif is_mod1(arg.chat_id, data.id_) then
+		       text = text..'_Rank :_ *Group Moderator*\n\n'
+		 else
+		       text = text..'_Rank :_ *Group Member*\n\n'
+		 end
+         local user_info = {} 
+  local uhash = 'user:'..data.id_
+  local user = redis:hgetall(uhash)
+  local um_hash = 'msgs:'..data.id_..':'..arg.chat_id
+  user_info_msgs = tonumber(redis:get(um_hash) or 0)
+  text = text..'Total messages : '..user_info_msgs..'\n\n'
+  text = text..'@skyteam'
+  tdcli.sendMessage(arg.chat_id, arg.msgid, 0, text, 0, "md")
    end
-  end
 end
-
+tdcli_function ({
+    ID = "GetUser",
+    user_id_ = msg.from.id,
+  }, info_by_id, {chat_id=msg.chat_id_,user_id=msg.from.id,msgid=msg.id_})
+      end
+   end
+end
 return {
-  description = 'Know your information or the info of a chat members.',
-  usage = {
-	'!info: Return your info and the chat info if you are in one.',
-	'(Reply)!info: Return info of replied user if used by reply.',
-	'!info <id>: Return the info\'s of the <id>.',
-	'!info @<user_name>: Return the member @<user_name> information from the current chat.',
-	'!setrank <userid> <rank>: change members rank.',
-	'(Reply)!setrank <rank>: change members rank.',
-  },
-  patterns = {
-	"^[/!]([Ii][Nn][Ff][Oo])$",
-	"^[/!]([Ii][Nn][Ff][Oo]) (.*)$",
-	"^[/!]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (%d+) (.*)$",
-	"^[/!]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",
-  },
-  run = run
+	patterns = {
+"^(اطلاعات من)$",
+"[/#!](info) (.*)$",
+"[/#!](info)$",
+"^(اطلاعات) (.*)$",
+
+},
+	run = run
 }
-
-end
-
--- By Arian
+--This Is info.lua for BDReborn Source :)

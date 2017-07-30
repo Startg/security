@@ -8,8 +8,8 @@ end
 local function run(msg, matches)
 	--Commands --دستورات فعال و غیرفعال کردن فحش
 
-	if matches[1]:lower() == 'unlock' then
-		if matches[2]:lower() == 'fosh' then
+	if matches[1]:lower() == 'unlock' or matches[1] == 'بازکردن'  then
+		if matches[2]:lower() == 'fosh' or matches[2] == 'فحش'  then
 			if not is_mod(msg) then return end
 			local fosh = redis:hget('settings:fosh',msg.chat_id_)
 			if fosh == 'on' then 
@@ -20,8 +20,8 @@ local function run(msg, matches)
 			end
 		end
 	end
-	if matches[1]:lower() == 'lock' then
-		if matches[2]:lower() == 'fosh' then
+	if matches[1]:lower() == 'lock' or matches[1] == 'قفل' then
+		if matches[2]:lower() == 'fosh' or matches[2] == 'فحش' then
 			if not is_mod(msg) then return end
 			local fosh = redis:hget('settings:fosh',msg.chat_id_)
 			if fosh == 'off' then 
@@ -93,7 +93,9 @@ return {
 
 	--Commands ##Don't change this##
 	"^[!/#]([Ll][Oo][Cc][Kk]) (.*)$",
-	"^[!/#]([Uu][Nn][Ll][Oo][Cc][Kk]) (.*)$",
+	"^(قفل) (.*)$",
+	"^(بازکردن) (.*)$",
+	"^[!/#]([Uu][Nn][Ll][Oo][Cc][Kk]) (.*)$"
 	------------End----------------
   },
   run = run,
