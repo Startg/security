@@ -77,6 +77,8 @@ function create_config( )
                 "ping",
 		"mute",
 		"help",
+		"del",
+		"del1,
 		"gp-fa",
 		"banhammer_fa"
 	  },
