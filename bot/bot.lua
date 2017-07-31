@@ -75,6 +75,7 @@ function create_config( )
 		"monshi",
 		"serverinfo",
                 "ping",
+		"mute",
 		"help",
 		"gp-fa",
 		"banhammer_fa"
