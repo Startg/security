@@ -264,7 +264,7 @@ text = [[
 🔸دستور تغیر زبان ربات
 
  موفق باشید
-♻*ｃԋﾑŋεŁℓ:*@Onemizban\_market;)]]..msg_caption
+♻*ｃԋﾑŋεŁℓ:*@skyteam;)]]..msg_caption
 tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, 'md')
 else
 
@@ -414,7 +414,7 @@ text = [[
 🔸دستور تغیر زبان ربات
 
  موفق باشید
-♻*ｃԋﾑŋεŁℓ:*@Onemizban_market;)]]..msg_caption
+♻*ｃԋﾑŋεŁℓ:*@skyteam;)]]..msg_caption
 tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, 'md')
 end
 end
