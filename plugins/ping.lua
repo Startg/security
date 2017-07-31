@@ -1,13 +1,13 @@
 --start by @Tele_Sudo
 local datebase = {
-   "PONG...",
+   "اره انلاینم😎",
   }
 local function run(msg, matches) 
 return datebase[math.random(#datebase)]
 end
 return {
   patterns = {
-    "^[/#+×!$]([Pp][Ii][Nn][Gg])",
+    "^(انلاینی)$",
   },
   run = run
 }
