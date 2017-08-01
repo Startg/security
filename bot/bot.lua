@@ -78,7 +78,7 @@ function create_config( )
 		"mute",
 		"help",
 		"del",
-		"del1,
+		"del1",
 		"gp-fa",
 		"banhammer_fa"
 	  },
