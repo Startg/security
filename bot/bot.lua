@@ -79,8 +79,7 @@ function create_config( )
 		"help",
 		"del",
 		"del1",
-		"gp-fa",
-		"banhammer_fa"
+		"gp-fa"
 	  },
     sudo_users = {441247469},
     admins = {},
