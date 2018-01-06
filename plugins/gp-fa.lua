@@ -4,7 +4,7 @@ local lang = redis:get(hash)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
    if not lang then
-        return '_You are not bot admin_'
+        return '_Ｙｏｕ ａｒｅ ｎｏｔ ｂｏｔ ａｄｍｉｎ_'
 else
      return 'شما مدیر ربات نمیباشید'..msg_caption
     end
@@ -12,7 +12,7 @@ end
     local data = load_data(_config.moderation.data)
   if data[tostring(msg.chat_id_)] then
 if not lang then
-   return '_Group is already added_'..msg_caption
+   return '_Ｇｒｏｕｐ  ｉｓ  ａｌｒｅａｄｙ ａｄｄｅｄ_'..msg_caption
 else
 return 'گروه در لیست گروه های مدیریتی ربات هم اکنون موجود است'..msg_caption
   end
@@ -56,7 +56,7 @@ end
       data[tostring(groups)][tostring(msg.chat_id_)] = msg.chat_id_
       save_data(_config.moderation.data, data)
     if not lang then
-  return '*Group has been added*'..msg_caption
+  return '*Ｇｒｏｕｐ ｈａｓ ｂｅｅｎ ａｄｄｅｄ*'..msg_caption
 else
   return 'گروه با موفقیت به لیست گروه های مدیریتی ربات افزوده شد'..msg_caption
 end
@@ -68,7 +68,7 @@ local lang = redis:get(hash)
     -- superuser and admins only (because sudo are always has privilege)
       if not is_admin(msg) then
      if not lang then
-        return '_You are not bot admin_'
+        return '_Ｙｏｕ ａｒｅ ｎｏｔ ｂｏｔ ａｄｍｉｎ_'
    else
         return 'شما مدیر ربات نمیباشید'
     end
@@ -77,7 +77,7 @@ local lang = redis:get(hash)
     local receiver = msg.chat_id_
   if not data[tostring(msg.chat_id_)] then
   if not lang then
-    return '_Group is not added_'
+    return '_Ｇｒｏｕｐ ｉｓ ｎｏｔ ａｄｄｅｄ_'
 else
     return 'گروه به لیست گروه های مدیریتی ربات اضافه نشده است'
    end
@@ -92,7 +92,7 @@ else
       end data[tostring(groups)][tostring(msg.chat_id_)] = nil
       save_data(_config.moderation.data, data)
  if not lang then
-  return '*Group has been removed*'
+  return '*Ｇｒｏｕｐ ｈａｓ ｂｅｅｎ ｒｅｍｏｖｅｄ*'
  else
   return 'گروه با موفیت از لیست گروه های مدیریتی ربات حذف شد'
 end
@@ -104,7 +104,7 @@ local lang = redis:get(hash)
     local i = 1
   if not data[tostring(msg.chat_id_)] then
   if not lang then
-    return "_Group is not added_"
+    return "_Ｇｒｏｕｐ ｉｓ ｎｏｔ ａｄｄｅｄ_"
  else
     return "گروه به لیست گروه های مدیریتی ربات اضافه نشده است"
   end
@@ -137,7 +137,7 @@ local lang = redis:get(hash)
     local i = 1
   if not data[tostring(msg.chat_id_)] then
 if not lang then
-    return "_Group is not added_"
+    return "_Ｇｒｏｕｐ ｉｓ ｎｏｔ ａｄｄｅｄ_"
 else
 return "گروه به لیست گروه های مدیریتی ربات اضافه نشده است"
   end
@@ -170,7 +170,7 @@ local cmd = arg.cmd
 if not tonumber(data.sender_user_id_) then return false end
   if not administration[tostring(data.chat_id_)] then
   if not lang then
-    return tdcli.sendMessage(data.chat_id_, "", 0, "_Group is not added_", 0, "md")
+    return tdcli.sendMessage(data.chat_id_, "", 0, "_Ｇｒｏｕｐ ｉｓ ｎｏｔ ａｄｄｅｄ_", 0, "md")
 else
     return tdcli.sendMessage(data.chat_id_, "", 0, "_گروه به لیست گروه های مدیریتی ربات اضافه نشده است_", 0, "md")
      end
@@ -311,7 +311,7 @@ local cmd = arg.cmd
     local administration = load_data(_config.moderation.data)
   if not administration[tostring(arg.chat_id)] then
   if not lang then
-    return tdcli.sendMessage(data.chat_id_, "", 0, "_Group is not added_", 0, "md")
+    return tdcli.sendMessage(data.chat_id_, "", 0, "_Ｇｒｏｕｐ ｉｓ ｎｏｔ ａｄｄｅｄ_", 0, "md")
 else
     return tdcli.sendMessage(data.chat_id_, "", 0, "_گروه به لیست گروه های مدیریتی ربات اضافه نشده است_", 0, "md")
      end
@@ -410,7 +410,7 @@ local cmd = arg.cmd
     local administration = load_data(_config.moderation.data)
   if not administration[tostring(arg.chat_id)] then
   if not lang then
-    return tdcli.sendMessage(data.chat_id_, "", 0, "_Group is not added_", 0, "md")
+    return tdcli.sendMessage(data.chat_id_, "", 0, "_Ｇｒｏｕｐ ｉｓ ｎｏｔ ａｄｄｅｄ_", 0, "md")
 else
     return tdcli.sendMessage(data.chat_id_, "", 0, "_گروه به لیست گروه های مدیریتی ربات اضافه نشده است_", 0, "md")
      end
@@ -518,7 +518,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -547,7 +547,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -576,7 +576,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -605,7 +605,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end 
@@ -634,7 +634,7 @@ local function lock_mention(msg, data, target)
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -663,7 +663,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -692,7 +692,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -721,7 +721,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -750,7 +750,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -779,7 +779,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -808,7 +808,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -837,7 +837,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -866,7 +866,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -895,7 +895,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end 
@@ -924,7 +924,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -953,7 +953,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end 
@@ -982,7 +982,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1011,7 +1011,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end 
@@ -1040,7 +1040,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- 	return "_You're Not_ *Moderator*"
+ 	return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
   return "شما مدیر گروه نمیباشید"
 end
@@ -1144,7 +1144,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then 
 if not lang then
-return "_You're Not_ *Moderator*" 
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*" 
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1173,7 +1173,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then 
 if not lang then
-return "_You're Not_ *Moderator*" 
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*" 
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1203,7 +1203,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1232,7 +1232,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1261,7 +1261,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1290,7 +1290,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end 
@@ -1319,7 +1319,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1348,7 +1348,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1377,7 +1377,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1406,7 +1406,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end 
@@ -1435,7 +1435,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1464,7 +1464,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1493,7 +1493,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1522,7 +1522,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1551,7 +1551,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1580,7 +1580,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1609,7 +1609,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1638,7 +1638,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1667,7 +1667,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1696,7 +1696,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end 
@@ -1725,7 +1725,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1754,7 +1754,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1783,7 +1783,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1812,7 +1812,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1841,7 +1841,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1870,7 +1870,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1899,7 +1899,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1928,7 +1928,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نمیباشید"
 end
@@ -1945,7 +1945,7 @@ else
 data[tostring(target)]["mutes"]["mute_document"] = "no"
  save_data(_config.moderation.data, data) 
 if not lang then
-return "*Mute Document* _Has Been Disabled_\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]" 
+return "*Mute Document* _Ｈａｓ Ｂｅｅｎ Ｄｉｓａｂｌｅｄ_\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]" 
 else
 return "بیصدا کردن اسناد غیر فعال شد\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]"
 end
@@ -1957,7 +1957,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- return "_You're Not_ *Moderator*"
+ return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
  return "شما مدیر گروه نمیباشید"
 end
@@ -1986,7 +1986,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
  if not is_mod(msg) then
 if not lang then
-return "_You're Not_ *Moderator*"
+return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"
 else
 return "شما مدیر گروه نیستید"
 end 
@@ -2003,7 +2003,7 @@ else
 data[tostring(target)]["mutes"]["mute_tgservice"] = "no"
  save_data(_config.moderation.data, data) 
 if not lang then
-return "*Mute TgService* _Has Been Disabled_\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]"
+return "*Mute TgService* _Ｈａｓ Ｂｅｅｎ Ｄｉｓａｂｌｅｄ_\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]"
 else
 return "بیصدا کردن خدمات تلگرام غیر فعال شد\n*〰〰〰〰〰〰〰〰*\n*øяđeявч*: [@"..check_markdown(msg.from.username or "sudo_star").."]"
 end 
@@ -2015,7 +2015,7 @@ local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
 if not is_mod(msg) then
 if not lang then
- 	return "_You're Not_ *Moderator*"	
+ 	return "_Ｙｏｕ'ｒｅ Ｎｏｔ_ *Ｍｏｄｅｒａｔｏｒ*"	
 else
  return "شما مدیر گروه نیستید"
 end
