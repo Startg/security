@@ -73,7 +73,7 @@ end
 return text
 end
 ------------------------------------------
-if matches[1] == "rahnama" or  matches[1] == "راهنما" and is_mod(msg) then
+if matches[1] == "help farsi" or  matches[1] == "راهنما" and is_mod(msg) then
 if not lang then
 text = [[
 راهنما ربات⤴
@@ -95,7 +95,7 @@ end
 return text
 end
 ----------------------------------------------
-if matches[1] == "helpfarsi" or  matches[1] == "دستورات مدیریتی" and is_mod(msg) then
+if matches[1] == "help farsi" or  matches[1] == "دستورات مدیریتی" and is_mod(msg) then
 if not lang then
 text = [[
 
@@ -402,7 +402,7 @@ end
 
 return {
 patterns ={
-"^[!/#](helpfarsi)$",
+"^[!/#](help farsi)$",
 "^[!/#](rahnama)$",
 "^[!/#](fun help)$",
 "^(دستورات مدیریتی)$",
