@@ -73,7 +73,7 @@ end
 return text
 end
 ------------------------------------------
-if matches[1] == "help farsi" or  matches[1] == "راهنما" and is_mod(msg) then
+if matches[1] == "rahnama" or  matches[1] == "راهنما" and is_mod(msg) then
 if not lang then
 text = [[
 راهنما ربات⤴
