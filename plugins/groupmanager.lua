@@ -2933,24 +2933,27 @@ tdcli_function ({
             return "تمام مدیران گروه تنزیل مقام شدند"
 			end
          end
-			if matches[2] == 'filterlist' then
-				if next(data[tostring(chat)]['filterlist']) == nil then
-     if not lang then
-					return "*Filtered words list* _is empty_"
-         else
-					return "_لیست کلمات فیلتر شده خالی است_"
-             end
-				end
-				for k,v in pairs(data[tostring(chat)]['filterlist']) do
-					data[tostring(chat)]['filterlist'][tostring(k)] = nil
-					save_data(_config.moderation.data, data)
-				end
-       if not lang then
-				return "*Filtered words list* _has been cleaned_"
-           else
-				return "_لیست کلمات فیلتر شده پاک شد_"
-           end
-			end
+	if matches[1] == "filterlist" and is_mod(msg)  then
+	  local flist = redis:smembers('filters:'..msg.chat_id_)
+		if flist == nil then 
+		if lang then 
+		text = 'لیست فیلترینگ خالی میباشد !'
+		else
+		text = '*Filter List is Empty !*'
+		end
+		tdcli.sendMessage(msg.chat_id_, msg.id_, 1, text, 1 , 'md')
+		else
+		if lang then
+		text = 'لیست کلمات فیلتر شده :\n\n'
+		else
+		text = '*Filtered Words List :*\n\n'
+		end
+			for k,v in pairs(flist) do 
+		 text = text..">*"..k.."*- "..v..""
+		end
+		 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, text, 1 , 'md')
+		end
+  	end
 			if matches[2] == 'rules' then
 				if not data[tostring(chat)]['rules'] then
             if not lang then
