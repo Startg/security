@@ -1,5 +1,5 @@
--- #sky bot Robot
--- #@skyteam
+-- #Beyond Reborn Robot
+-- #@BeyondTeam
 
 tdcli = dofile('./tg/tdcli.lua')
 serpent = (loadfile "./libs/serpent.lua")()
@@ -63,25 +63,24 @@ function create_config( )
   -- A simple config with basic plugins and ourselves as privileged user
 	config = {
     enabled_plugins = {
-		"banhammer",
-		"groupmanager",
-		"msg-checks",
-		"plugins",
-		"tools",
-		"fun",
-		"nerkh",
-		"addkick",
-		"lock_fosh",
-		"monshi",
-		"serverinfo",
-                "ping",
-		"mute",
-		"help",
-		"del",
-		"del1",
-		"gp-fa"
-	  },
-    sudo_users = {441247469},
+  "banhammer",
+  "groupmanager",
+  "msg-checks",
+  "plugins",
+  "tools",
+  "fun",
+  "nerkh",
+  "addkick",
+  "lock_fosh",
+  "monshi",
+  "serverinfo",
+  "ping",
+  "mute",
+  "help",
+  "del",
+  "del1"
+	},
+    sudo_users = {549430705},
     admins = {},
     disabled_channels = {},
     moderation = {data = './data/moderation.json'},
